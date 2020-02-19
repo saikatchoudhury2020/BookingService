@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="90d898477b4840c2ae404d9be77d1648" Name="Diagram1" ZoomLevel="49">
+        <EntityTypeShape EntityType="BraathenEiendomModel.MenuItem" Width="1.5" PointX="3.375" PointY="0.75" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__MenuItem__Parent__15FC9BF3" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Person" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.OrganizationUnit" Width="1.5" PointX="10.375" PointY="1.125" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.OrganizationUnit_Person" Width="1.5" PointX="12.625" PointY="5.875" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__Organizat__Organ__2EC849BD" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__Organizat__Perso__2CE0014B" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.PictureProperty" Width="1.5" PointX="0.75" PointY="5.125" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__MenuItem__Pictur__13202F48" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__Organizat__Pictu__2A0394A0" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__Person__PictureI__31A4B668" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__PicturePr__Perso__28C557A4" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Article_Banner" Width="1.5" PointX="6" PointY="6" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Banner" Width="1.5" PointX="10.625" PointY="9.25" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_Article_Banner_Banner" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__Banner__Picturei__411C0422" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_Banner_Person" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.UserGroup_User" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.UserGroup" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Article" Width="1.5" PointX="3" PointY="17.75" />
+        <AssociationConnector Association="BraathenEiendomModel.FK__Article__MainID__275C321F" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_Article_Banner_Article" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_Article_PictureProperty" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Article_MenuItem" Width="1.5" PointX="5.625" PointY="12.5" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_Article_MenuItem_Article" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_Article_MenuItem_Article1" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_Article_MenuItem_MenuItem" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.BookingMessage" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Preference" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Note" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.DataObjectPage" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Article_Article" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.BookingPriceDetail" Width="1.5" PointX="15.375" PointY="4.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.AgreementType" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Agreement" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.BookingDetail" Width="1.5" PointX="5.375" PointY="17.125" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.BookingServiceList" Width="1.5" PointX="7.625" PointY="18" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_FoodService_BookingDetail" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Orderhead" Width="1.5" PointX="13.375" PointY="10.25" />
+        <EntityTypeShape EntityType="BraathenEiendomModel.Orderline" Width="1.5" PointX="15.625" PointY="10.125" />
+        <AssociationConnector Association="BraathenEiendomModel.FK_Orderline_Orderhead" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

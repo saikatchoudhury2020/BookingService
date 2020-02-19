@@ -1,0 +1,851 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BraathenEiendomModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BraathenEiendomEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MenuItems" EntityType="BraathenEiendomModel.MenuItem" />
+    <AssociationSet Name="FK__MenuItem__Parent__15FC9BF3" Association="BraathenEiendomModel.FK__MenuItem__Parent__15FC9BF3">
+      <End Role="MenuItem" EntitySet="MenuItems" />
+      <End Role="MenuItem1" EntitySet="MenuItems" />
+    </AssociationSet>
+    <EntitySet Name="People" EntityType="BraathenEiendomModel.Person" />
+    <EntitySet Name="OrganizationUnits" EntityType="BraathenEiendomModel.OrganizationUnit" />
+    <EntitySet Name="OrganizationUnit_Person" EntityType="BraathenEiendomModel.OrganizationUnit_Person" />
+    <AssociationSet Name="FK__Organizat__Organ__2EC849BD" Association="BraathenEiendomModel.FK__Organizat__Organ__2EC849BD">
+      <End Role="OrganizationUnit" EntitySet="OrganizationUnits" />
+      <End Role="OrganizationUnit_Person" EntitySet="OrganizationUnit_Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Organizat__Perso__2CE0014B" Association="BraathenEiendomModel.FK__Organizat__Perso__2CE0014B">
+      <End Role="Person" EntitySet="People" />
+      <End Role="OrganizationUnit_Person" EntitySet="OrganizationUnit_Person" />
+    </AssociationSet>
+    <EntitySet Name="PictureProperties" EntityType="BraathenEiendomModel.PictureProperty" />
+    <AssociationSet Name="FK__MenuItem__Pictur__13202F48" Association="BraathenEiendomModel.FK__MenuItem__Pictur__13202F48">
+      <End Role="PictureProperty" EntitySet="PictureProperties" />
+      <End Role="MenuItem" EntitySet="MenuItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Organizat__Pictu__2A0394A0" Association="BraathenEiendomModel.FK__Organizat__Pictu__2A0394A0">
+      <End Role="PictureProperty" EntitySet="PictureProperties" />
+      <End Role="OrganizationUnit" EntitySet="OrganizationUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Person__PictureI__31A4B668" Association="BraathenEiendomModel.FK__Person__PictureI__31A4B668">
+      <End Role="PictureProperty" EntitySet="PictureProperties" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PicturePr__Perso__28C557A4" Association="BraathenEiendomModel.FK__PicturePr__Perso__28C557A4">
+      <End Role="Person" EntitySet="People" />
+      <End Role="PictureProperty" EntitySet="PictureProperties" />
+    </AssociationSet>
+    <EntitySet Name="Article_Banner" EntityType="BraathenEiendomModel.Article_Banner" />
+    <EntitySet Name="Banners" EntityType="BraathenEiendomModel.Banner" />
+    <AssociationSet Name="FK_Article_Banner_Banner" Association="BraathenEiendomModel.FK_Article_Banner_Banner">
+      <End Role="Banner" EntitySet="Banners" />
+      <End Role="Article_Banner" EntitySet="Article_Banner" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Banner__Picturei__411C0422" Association="BraathenEiendomModel.FK__Banner__Picturei__411C0422">
+      <End Role="PictureProperty" EntitySet="PictureProperties" />
+      <End Role="Banner" EntitySet="Banners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banner_Person" Association="BraathenEiendomModel.FK_Banner_Person">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Banner" EntitySet="Banners" />
+    </AssociationSet>
+    <EntitySet Name="UserGroup_User" EntityType="BraathenEiendomModel.UserGroup_User" />
+    <EntitySet Name="UserGroups" EntityType="BraathenEiendomModel.UserGroup" />
+    <EntitySet Name="Articles" EntityType="BraathenEiendomModel.Article" />
+    <AssociationSet Name="FK__Article__MainID__275C321F" Association="BraathenEiendomModel.FK__Article__MainID__275C321F">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="Article1" EntitySet="Articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Banner_Article" Association="BraathenEiendomModel.FK_Article_Banner_Article">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="Article_Banner" EntitySet="Article_Banner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_PictureProperty" Association="BraathenEiendomModel.FK_Article_PictureProperty">
+      <End Role="PictureProperty" EntitySet="PictureProperties" />
+      <End Role="Article" EntitySet="Articles" />
+    </AssociationSet>
+    <EntitySet Name="Article_MenuItem" EntityType="BraathenEiendomModel.Article_MenuItem" />
+    <AssociationSet Name="FK_Article_MenuItem_Article" Association="BraathenEiendomModel.FK_Article_MenuItem_Article">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="Article_MenuItem" EntitySet="Article_MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_MenuItem_Article1" Association="BraathenEiendomModel.FK_Article_MenuItem_Article1">
+      <End Role="Article" EntitySet="Articles" />
+      <End Role="Article_MenuItem" EntitySet="Article_MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_MenuItem_MenuItem" Association="BraathenEiendomModel.FK_Article_MenuItem_MenuItem">
+      <End Role="MenuItem" EntitySet="MenuItems" />
+      <End Role="Article_MenuItem" EntitySet="Article_MenuItem" />
+    </AssociationSet>
+    <FunctionImport Name="sel_DataView">
+      <Parameter Name="Type" Mode="In" Type="Int32" />
+      <Parameter Name="ViewID" Mode="In" Type="Int32" />
+      <Parameter Name="DataObjectID" Mode="In" Type="Int32" />
+      <Parameter Name="DataObjectCategoryID" Mode="In" Type="Int32" />
+      <Parameter Name="ViewName" Mode="In" Type="String" />
+      <Parameter Name="ProcedureName" Mode="InOut" Type="String" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageItems" Mode="In" Type="Int32" />
+      <Parameter Name="TotalItems" Mode="InOut" Type="Int32" />
+      <Parameter Name="ContentView" Mode="InOut" Type="Int32" />
+      <Parameter Name="GetParameterizedColumn" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <EntitySet Name="BookingMessages" EntityType="BraathenEiendomModel.BookingMessage" />
+    <EntitySet Name="Preferences" EntityType="BraathenEiendomModel.Preference" />
+    <EntitySet Name="Notes" EntityType="BraathenEiendomModel.Note" />
+    <EntitySet Name="DataObjectPages" EntityType="BraathenEiendomModel.DataObjectPage" />
+    <EntitySet Name="Article_Article" EntityType="BraathenEiendomModel.Article_Article" />
+    <EntitySet Name="BookingPriceDetails" EntityType="BraathenEiendomModel.BookingPriceDetail" />
+    <EntitySet Name="AgreementTypes" EntityType="BraathenEiendomModel.AgreementType" />
+    <EntitySet Name="Agreements" EntityType="BraathenEiendomModel.Agreement" />
+    <EntitySet Name="BookingDetails" EntityType="BraathenEiendomModel.BookingDetail" />
+    <EntitySet Name="BookingServiceLists" EntityType="BraathenEiendomModel.BookingServiceList" />
+    <AssociationSet Name="FK_FoodService_BookingDetail" Association="BraathenEiendomModel.FK_FoodService_BookingDetail">
+      <End Role="BookingDetail" EntitySet="BookingDetails" />
+      <End Role="BookingServiceList" EntitySet="BookingServiceLists" />
+    </AssociationSet>
+    <EntitySet Name="Orderheads" EntityType="BraathenEiendomModel.Orderhead" />
+    <EntitySet Name="Orderlines" EntityType="BraathenEiendomModel.Orderline" />
+    <AssociationSet Name="FK_Orderline_Orderhead" Association="BraathenEiendomModel.FK_Orderline_Orderhead">
+      <End Role="Orderhead" EntitySet="Orderheads" />
+      <End Role="Orderline" EntitySet="Orderlines" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MenuItem">
+    <Key>
+      <PropertyRef Name="MenuItemID" />
+    </Key>
+    <Property Name="MenuItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuItemName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Parentid" Type="Int32" />
+    <Property Name="Status" Type="Byte" Nullable="false" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Protected" Type="Int16" Nullable="false" />
+    <Property Name="TemplateID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="Byte" Nullable="false" />
+    <Property Name="Showdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Expiredate" Type="DateTime" Precision="3" />
+    <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Target" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Pictureid" Type="Int32" />
+    <Property Name="Sortorder" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DataObjectID" Type="Int32" />
+    <Property Name="DataObjectRecordID" Type="Int32" />
+    <Property Name="Lvl" Type="Int32" />
+    <Property Name="hierarchy" Type="String" MaxLength="900" FixedLength="false" Unicode="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Fullpath" Type="String" MaxLength="900" FixedLength="false" Unicode="true" />
+    <Property Name="MetaKey" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="MetaDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Alias" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="TypeHierarchy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AliasHierarchy" Type="String" MaxLength="900" FixedLength="false" Unicode="true" />
+    <Property Name="LCID" Type="Int32" />
+    <Property Name="RSSEnabled" Type="Int16" Nullable="false" />
+    <Property Name="RSSMaxNoOfArticles" Type="Int32" />
+    <Property Name="ArticleTemplateID" Type="Int32" />
+    <NavigationProperty Name="MenuItem1" Relationship="BraathenEiendomModel.FK__MenuItem__Parent__15FC9BF3" FromRole="MenuItem" ToRole="MenuItem1" />
+    <NavigationProperty Name="MenuItem2" Relationship="BraathenEiendomModel.FK__MenuItem__Parent__15FC9BF3" FromRole="MenuItem1" ToRole="MenuItem" />
+    <NavigationProperty Name="PictureProperty" Relationship="BraathenEiendomModel.FK__MenuItem__Pictur__13202F48" FromRole="MenuItem" ToRole="PictureProperty" />
+    <NavigationProperty Name="Article_MenuItem" Relationship="BraathenEiendomModel.FK_Article_MenuItem_MenuItem" FromRole="MenuItem" ToRole="Article_MenuItem" />
+  </EntityType>
+  <Association Name="FK__MenuItem__Parent__15FC9BF3">
+    <End Type="BraathenEiendomModel.MenuItem" Role="MenuItem" Multiplicity="0..1" />
+    <End Type="BraathenEiendomModel.MenuItem" Role="MenuItem1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="MenuItemID" />
+      </Principal>
+      <Dependent Role="MenuItem1">
+        <PropertyRef Name="Parentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GivenName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FamilyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AdditionalNames" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NamePrefix" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NameSuffix" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NickName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LoginName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="OfficeFunction" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="EmployeeNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordHash" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Priority" Type="Int32" />
+    <Property Name="Birthdate" Type="DateTime" Precision="3" />
+    <Property Name="DateOfJoining" Type="DateTime" Precision="3" />
+    <Property Name="CanReceiveHTMLMail" Type="Boolean" Nullable="false" />
+    <Property Name="IMAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="175" FixedLength="false" Unicode="true" />
+    <Property Name="Email2" Type="String" MaxLength="175" FixedLength="false" Unicode="true" />
+    <Property Name="Email3" Type="String" MaxLength="175" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="SMSNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="WorkPhone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone3" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="HomePhone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="MartialStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PartnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PartnersBirthdate" Type="DateTime" Precision="3" />
+    <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Motto" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Education" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TimeZone" Type="Decimal" Precision="4" Scale="2" />
+    <Property Name="Course" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Expertise" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Certification" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GUID" Type="Guid" />
+    <Property Name="Custom1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Custom2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Custom3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RTL" Type="Boolean" Nullable="false" />
+    <Property Name="Culture" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UICulture" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="WorkingHoursStart" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="WorkingHoursEnd" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="ExternalID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="ExpireDate" Type="DateTime" Precision="3" />
+    <Property Name="Theme" Type="Int32" />
+    <Property Name="DeviceId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastLogin" Type="DateTime" Precision="3" />
+    <Property Name="PlatformType" Type="Int32" />
+    <NavigationProperty Name="OrganizationUnit_Person" Relationship="BraathenEiendomModel.FK__Organizat__Perso__2CE0014B" FromRole="Person" ToRole="OrganizationUnit_Person" />
+    <NavigationProperty Name="PictureProperty" Relationship="BraathenEiendomModel.FK__Person__PictureI__31A4B668" FromRole="Person" ToRole="PictureProperty" />
+    <NavigationProperty Name="PictureProperties" Relationship="BraathenEiendomModel.FK__PicturePr__Perso__28C557A4" FromRole="Person" ToRole="PictureProperty" />
+    <NavigationProperty Name="Banners" Relationship="BraathenEiendomModel.FK_Banner_Person" FromRole="Person" ToRole="Banner" />
+  </EntityType>
+  <EntityType Name="OrganizationUnit">
+    <Key>
+      <PropertyRef Name="OrganizationUnitID" />
+    </Key>
+    <Property Name="OrganizationUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizationUnitName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Byte" Nullable="false" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="Url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="OrgNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RefNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Fax" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Email2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Branch" Type="Byte" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="Lvl" Type="Int32" />
+    <Property Name="Hierarchy" Type="String" MaxLength="900" FixedLength="false" Unicode="false" />
+    <Property Name="FullPath" Type="String" MaxLength="900" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Byte" Nullable="false" />
+    <Property Name="Custom1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Custom2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Custom3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Homepage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExternalID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="WorkingHoursStart" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="WorkingHoursEnd" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="OrganizationUnit_Person" Relationship="BraathenEiendomModel.FK__Organizat__Organ__2EC849BD" FromRole="OrganizationUnit" ToRole="OrganizationUnit_Person" />
+    <NavigationProperty Name="PictureProperty" Relationship="BraathenEiendomModel.FK__Organizat__Pictu__2A0394A0" FromRole="OrganizationUnit" ToRole="PictureProperty" />
+  </EntityType>
+  <EntityType Name="OrganizationUnit_Person">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <Property Name="OrganizationUnitID" Type="Int32" Nullable="false" />
+    <Property Name="AssociationID" Type="Int32" Nullable="false" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="OrganizationUnit" Relationship="BraathenEiendomModel.FK__Organizat__Organ__2EC849BD" FromRole="OrganizationUnit_Person" ToRole="OrganizationUnit" />
+    <NavigationProperty Name="Person" Relationship="BraathenEiendomModel.FK__Organizat__Perso__2CE0014B" FromRole="OrganizationUnit_Person" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK__Organizat__Organ__2EC849BD">
+    <End Type="BraathenEiendomModel.OrganizationUnit" Role="OrganizationUnit" Multiplicity="1" />
+    <End Type="BraathenEiendomModel.OrganizationUnit_Person" Role="OrganizationUnit_Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationUnit">
+        <PropertyRef Name="OrganizationUnitID" />
+      </Principal>
+      <Dependent Role="OrganizationUnit_Person">
+        <PropertyRef Name="OrganizationUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Organizat__Perso__2CE0014B">
+    <End Type="BraathenEiendomModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="BraathenEiendomModel.OrganizationUnit_Person" Role="OrganizationUnit_Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="OrganizationUnit_Person">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PictureProperty">
+    <Key>
+      <PropertyRef Name="PicturePropertyID" />
+    </Key>
+    <Property Name="PicturePropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PictureMainID" Type="Int32" Nullable="false" />
+    <Property Name="Filepath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Height" Type="Int32" Nullable="false" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="FileSize" Type="Int32" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="IsDefault" Type="Boolean" Nullable="false" />
+    <Property Name="IsThumbnail" Type="Boolean" Nullable="false" />
+    <Property Name="IsOriginal" Type="Boolean" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="PersonID" Type="Int32" />
+    <NavigationProperty Name="MenuItems" Relationship="BraathenEiendomModel.FK__MenuItem__Pictur__13202F48" FromRole="PictureProperty" ToRole="MenuItem" />
+    <NavigationProperty Name="OrganizationUnits" Relationship="BraathenEiendomModel.FK__Organizat__Pictu__2A0394A0" FromRole="PictureProperty" ToRole="OrganizationUnit" />
+    <NavigationProperty Name="People" Relationship="BraathenEiendomModel.FK__Person__PictureI__31A4B668" FromRole="PictureProperty" ToRole="Person" />
+    <NavigationProperty Name="Person" Relationship="BraathenEiendomModel.FK__PicturePr__Perso__28C557A4" FromRole="PictureProperty" ToRole="Person" />
+    <NavigationProperty Name="Banners" Relationship="BraathenEiendomModel.FK__Banner__Picturei__411C0422" FromRole="PictureProperty" ToRole="Banner" />
+    <NavigationProperty Name="Articles" Relationship="BraathenEiendomModel.FK_Article_PictureProperty" FromRole="PictureProperty" ToRole="Article" />
+  </EntityType>
+  <Association Name="FK__MenuItem__Pictur__13202F48">
+    <End Type="BraathenEiendomModel.PictureProperty" Role="PictureProperty" Multiplicity="0..1" />
+    <End Type="BraathenEiendomModel.MenuItem" Role="MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="MenuItem">
+        <PropertyRef Name="Pictureid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Organizat__Pictu__2A0394A0">
+    <End Type="BraathenEiendomModel.PictureProperty" Role="PictureProperty" Multiplicity="0..1" />
+    <End Type="BraathenEiendomModel.OrganizationUnit" Role="OrganizationUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="OrganizationUnit">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Person__PictureI__31A4B668">
+    <End Type="BraathenEiendomModel.PictureProperty" Role="PictureProperty" Multiplicity="0..1" />
+    <End Type="BraathenEiendomModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PicturePr__Perso__28C557A4">
+    <End Type="BraathenEiendomModel.Person" Role="Person" Multiplicity="0..1" />
+    <End Type="BraathenEiendomModel.PictureProperty" Role="PictureProperty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="PictureProperty">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Article_Banner">
+    <Key>
+      <PropertyRef Name="ObjectId" />
+    </Key>
+    <Property Name="ObjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleId" Type="Int32" Nullable="false" />
+    <Property Name="BannerId" Type="Int32" Nullable="false" />
+    <Property Name="AssociationId" Type="Int32" Nullable="false" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Banner" Relationship="BraathenEiendomModel.FK_Article_Banner_Banner" FromRole="Article_Banner" ToRole="Banner" />
+    <NavigationProperty Name="Article" Relationship="BraathenEiendomModel.FK_Article_Banner_Article" FromRole="Article_Banner" ToRole="Article" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="BannerId" />
+    </Key>
+    <Property Name="BannerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BannerName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="ShowDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpireDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int16" Nullable="false" />
+    <Property Name="Impressions" Type="Int32" Nullable="false" />
+    <Property Name="MaxImpressions" Type="Int32" />
+    <Property Name="Clicks" Type="Int32" Nullable="false" />
+    <Property Name="MaxClicks" Type="Int32" />
+    <Property Name="DestinationLinkId" Type="Int32" />
+    <Property Name="ContentType" Type="Byte" Nullable="false" />
+    <Property Name="PictureId" Type="Int32" />
+    <Property Name="PictureLinkId" Type="Int32" />
+    <Property Name="HtmlText" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="DocumentId" Type="Int32" />
+    <Property Name="Width" Type="Int32" Nullable="false" />
+    <Property Name="Height" Type="Int32" Nullable="false" />
+    <Property Name="FlashVersion" Type="Int16" Nullable="false" />
+    <Property Name="DataObjectId" Type="Int32" />
+    <Property Name="DataObjectRecordId" Type="Int32" />
+    <Property Name="MetaKeywords" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Article_Banner" Relationship="BraathenEiendomModel.FK_Article_Banner_Banner" FromRole="Banner" ToRole="Article_Banner" />
+    <NavigationProperty Name="PictureProperty" Relationship="BraathenEiendomModel.FK__Banner__Picturei__411C0422" FromRole="Banner" ToRole="PictureProperty" />
+    <NavigationProperty Name="Person" Relationship="BraathenEiendomModel.FK_Banner_Person" FromRole="Banner" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_Article_Banner_Banner">
+    <End Type="BraathenEiendomModel.Banner" Role="Banner" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BraathenEiendomModel.Article_Banner" Role="Article_Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Banner">
+        <PropertyRef Name="BannerId" />
+      </Principal>
+      <Dependent Role="Article_Banner">
+        <PropertyRef Name="BannerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Banner__Picturei__411C0422">
+    <End Type="BraathenEiendomModel.PictureProperty" Role="PictureProperty" Multiplicity="0..1" />
+    <End Type="BraathenEiendomModel.Banner" Role="Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="PictureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banner_Person">
+    <End Type="BraathenEiendomModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="BraathenEiendomModel.Banner" Role="Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserGroup_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserGroupId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserGroup">
+    <Key>
+      <PropertyRef Name="UserGroupId" />
+    </Key>
+    <Property Name="UserGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserGroupName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleID" />
+    </Key>
+    <Property Name="ArticleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MainID" Type="Int32" />
+    <Property Name="Version" Type="Int16" Nullable="false" />
+    <Property Name="Status" Type="Int16" Nullable="false" />
+    <Property Name="PublishStatus" Type="Int16" Nullable="false" />
+    <Property Name="PersonID" Type="Int32" Nullable="false" />
+    <Property Name="Headline" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ShowDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExpireDate" Type="DateTime" Precision="3" />
+    <Property Name="Abstract" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Fullstory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TOC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Discuss" Type="Boolean" Nullable="false" />
+    <Property Name="PictureID" Type="Int32" />
+    <Property Name="meta_description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="meta_keywords" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LockStatus" Type="Boolean" Nullable="false" />
+    <Property Name="LockTime" Type="DateTime" Precision="3" />
+    <Property Name="LockedBy" Type="Int32" />
+    <Property Name="DataObjectID" Type="Int32" />
+    <Property Name="DataObjectRecordID" Type="Int32" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Alias" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="CompleteArticle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PictureDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Article1" Relationship="BraathenEiendomModel.FK__Article__MainID__275C321F" FromRole="Article" ToRole="Article1" />
+    <NavigationProperty Name="Article2" Relationship="BraathenEiendomModel.FK__Article__MainID__275C321F" FromRole="Article1" ToRole="Article" />
+    <NavigationProperty Name="Article_Banner" Relationship="BraathenEiendomModel.FK_Article_Banner_Article" FromRole="Article" ToRole="Article_Banner" />
+    <NavigationProperty Name="PictureProperty" Relationship="BraathenEiendomModel.FK_Article_PictureProperty" FromRole="Article" ToRole="PictureProperty" />
+    <NavigationProperty Name="Article_MenuItem" Relationship="BraathenEiendomModel.FK_Article_MenuItem_Article" FromRole="Article" ToRole="Article_MenuItem" />
+    <NavigationProperty Name="Article_MenuItem1" Relationship="BraathenEiendomModel.FK_Article_MenuItem_Article1" FromRole="Article" ToRole="Article_MenuItem" />
+  </EntityType>
+  <Association Name="FK__Article__MainID__275C321F">
+    <End Type="BraathenEiendomModel.Article" Role="Article" Multiplicity="0..1" />
+    <End Type="BraathenEiendomModel.Article" Role="Article1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Article1">
+        <PropertyRef Name="MainID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Banner_Article">
+    <End Type="BraathenEiendomModel.Article" Role="Article" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BraathenEiendomModel.Article_Banner" Role="Article_Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Article_Banner">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_PictureProperty">
+    <End Type="BraathenEiendomModel.PictureProperty" Role="PictureProperty" Multiplicity="0..1" />
+    <End Type="BraathenEiendomModel.Article" Role="Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Article_MenuItem">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AssociationID" Type="Int32" Nullable="false" />
+    <Property Name="ArticleID" Type="Int32" Nullable="false" />
+    <Property Name="MainID" Type="Int32" Nullable="false" />
+    <Property Name="MenuItemID" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Article" Relationship="BraathenEiendomModel.FK_Article_MenuItem_Article" FromRole="Article_MenuItem" ToRole="Article" />
+    <NavigationProperty Name="Article1" Relationship="BraathenEiendomModel.FK_Article_MenuItem_Article1" FromRole="Article_MenuItem" ToRole="Article" />
+    <NavigationProperty Name="MenuItem" Relationship="BraathenEiendomModel.FK_Article_MenuItem_MenuItem" FromRole="Article_MenuItem" ToRole="MenuItem" />
+  </EntityType>
+  <Association Name="FK_Article_MenuItem_Article">
+    <End Type="BraathenEiendomModel.Article" Role="Article" Multiplicity="1" />
+    <End Type="BraathenEiendomModel.Article_MenuItem" Role="Article_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Article_MenuItem">
+        <PropertyRef Name="ArticleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_MenuItem_Article1">
+    <End Type="BraathenEiendomModel.Article" Role="Article" Multiplicity="1" />
+    <End Type="BraathenEiendomModel.Article_MenuItem" Role="Article_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Article_MenuItem">
+        <PropertyRef Name="MainID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_MenuItem_MenuItem">
+    <End Type="BraathenEiendomModel.MenuItem" Role="MenuItem" Multiplicity="1" />
+    <End Type="BraathenEiendomModel.Article_MenuItem" Role="Article_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="MenuItemID" />
+      </Principal>
+      <Dependent Role="Article_MenuItem">
+        <PropertyRef Name="MenuItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BookingMessage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BookingID" Type="Int32" />
+    <Property Name="To" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Attachments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SendTime" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="Subject" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Preference">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Settings" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Note">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="NoteText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="DataObjectPage">
+    <Key>
+      <PropertyRef Name="PageID" />
+    </Key>
+    <Property Name="PageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataObjectID" Type="Int32" Nullable="false" />
+    <Property Name="PageNumber" Type="Int32" Nullable="false" />
+    <Property Name="TopText" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="BottomText" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PageHTML" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FilteredHTML" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PageXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PageHiddenHTML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Article_Article">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MainID" Type="Int32" Nullable="false" />
+    <Property Name="RelatedMainID" Type="Int32" Nullable="false" />
+    <Property Name="AssociationID" Type="Int32" Nullable="false" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Priority" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingPriceDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsInternal" Type="Boolean" Nullable="false" />
+    <Property Name="Article1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Article2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitId" Type="Int32" Nullable="false" />
+    <Property Name="UnitDesc" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="From" Type="Int32" Nullable="false" />
+    <Property Name="To" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="AgreementType">
+    <Key>
+      <PropertyRef Name="AgreementTypeId" />
+    </Key>
+    <Property Name="AgreementTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Article" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="NumberOfMonths" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Agreement">
+    <Key>
+      <PropertyRef Name="AgreementId" />
+    </Key>
+    <Property Name="AgreementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer" Type="Int32" />
+    <Property Name="Contact" Type="Int32" />
+    <Property Name="AgreementTypeId" Type="Int32" />
+    <Property Name="FromDate" Type="DateTime" Precision="3" />
+    <Property Name="ToDate" Type="DateTime" Precision="3" />
+    <Property Name="Article" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NumberOfMonths" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="InvoicedToDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="BookingDetail">
+    <Key>
+      <PropertyRef Name="BookingID" />
+    </Key>
+    <Property Name="BookingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookingType" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="BookingName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NoOfPeople" Type="Int32" />
+    <Property Name="FromDate" Type="DateTime" Precision="3" />
+    <Property Name="ToDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsFoodOrder" Type="Boolean" Nullable="false" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="BuildingID" Type="Int32" Nullable="false" />
+    <Property Name="ServiceType" Type="Int32" Nullable="false" />
+    <Property Name="SendMessageType" Type="Int32" Nullable="false" />
+    <Property Name="UnitText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Double" />
+    <Property Name="UnitPrice" Type="Double" />
+    <Property Name="DiscountPercent" Type="Double" />
+    <Property Name="NetAmount" Type="Double" />
+    <Property Name="VATPercent" Type="Double" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="MainBookingId" Type="Int32" />
+    <Property Name="FollowUpDate" Type="DateTime" Precision="3" />
+    <Property Name="Customer" Type="Int32" />
+    <Property Name="Ordering" Type="Int32" />
+    <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeliver" Type="Boolean" />
+    <Property Name="IsClean" Type="Boolean" />
+    <Property Name="IsInternal" Type="Boolean" Nullable="false" />
+    <Property Name="InvoMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsMVA" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BookingServiceLists" Relationship="BraathenEiendomModel.FK_FoodService_BookingDetail" FromRole="BookingDetail" ToRole="BookingServiceList" />
+  </EntityType>
+  <EntityType Name="BookingServiceList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodID" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="BookingID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="ArticleId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Tekst" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Sum" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsKitchen" Type="Boolean" />
+    <Property Name="DiscountPercent" Type="Double" />
+    <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="VATPercent" Type="Double" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsVat" Type="Boolean" />
+    <Property Name="IsMainService" Type="Boolean" />
+    <Property Name="OrderHeadId" Type="Int32" />
+    <Property Name="ServiceName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CostPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CostTotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="BookingDetail" Relationship="BraathenEiendomModel.FK_FoodService_BookingDetail" FromRole="BookingServiceList" ToRole="BookingDetail" />
+  </EntityType>
+  <Association Name="FK_FoodService_BookingDetail">
+    <End Type="BraathenEiendomModel.BookingDetail" Role="BookingDetail" Multiplicity="1" />
+    <End Type="BraathenEiendomModel.BookingServiceList" Role="BookingServiceList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingDetail">
+        <PropertyRef Name="BookingID" />
+      </Principal>
+      <Dependent Role="BookingServiceList">
+        <PropertyRef Name="BookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Orderhead">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+    </Key>
+    <Property Name="OrderNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Orderdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerNo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="OurReference" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="YourReference" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EmailAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="VAT" Type="Int32" Nullable="false" />
+    <Property Name="Ordertype" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ERPClient" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeliver" Type="Boolean" />
+    <Property Name="IsClean" Type="Boolean" />
+    <Property Name="NoOFPeople" Type="Int32" />
+    <Property Name="Todate" Type="DateTime" Precision="3" />
+    <Property Name="FromDate" Type="DateTime" Precision="3" />
+    <Property Name="bookingId" Type="Int32" />
+    <Property Name="VismaOrderNo" Type="Int32" />
+    <Property Name="VismaOrderDate" Type="DateTime" Precision="3" />
+    <Property Name="ISVismaOrder" Type="Boolean" />
+    <Property Name="IsOrderConfirm" Type="Boolean" />
+    <Property Name="VMOrderFailedErrorMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orderlines" Relationship="BraathenEiendomModel.FK_Orderline_Orderhead" FromRole="Orderhead" ToRole="Orderline" />
+  </EntityType>
+  <EntityType Name="Orderline">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodID" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="BookingID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="ArticleId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Tekst" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Sum" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsKitchen" Type="Boolean" />
+    <Property Name="DiscountPercent" Type="Double" />
+    <Property Name="NetAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="VATPercent" Type="Double" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsVat" Type="Boolean" />
+    <Property Name="IsMainService" Type="Boolean" />
+    <Property Name="OrderHeadId" Type="Int32" Nullable="false" />
+    <Property Name="ServiceName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Time" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CostPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CostTotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="SortOrder" Type="Int32" />
+    <NavigationProperty Name="Orderhead" Relationship="BraathenEiendomModel.FK_Orderline_Orderhead" FromRole="Orderline" ToRole="Orderhead" />
+  </EntityType>
+  <Association Name="FK_Orderline_Orderhead">
+    <End Type="BraathenEiendomModel.Orderhead" Role="Orderhead" Multiplicity="1" />
+    <End Type="BraathenEiendomModel.Orderline" Role="Orderline" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orderhead">
+        <PropertyRef Name="OrderNo" />
+      </Principal>
+      <Dependent Role="Orderline">
+        <PropertyRef Name="OrderHeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

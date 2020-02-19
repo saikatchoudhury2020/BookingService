@@ -1,0 +1,802 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BraathenEiendomModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Agreements">
+    <Key>
+      <PropertyRef Name="AgreementId" />
+    </Key>
+    <Property Name="AgreementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Customer" Type="int" />
+    <Property Name="Contact" Type="int" />
+    <Property Name="AgreementTypeId" Type="int" />
+    <Property Name="FromDate" Type="datetime" />
+    <Property Name="ToDate" Type="datetime" />
+    <Property Name="Article" Type="varchar(max)" />
+    <Property Name="Text" Type="varchar(max)" />
+    <Property Name="NumberOfMonths" Type="int" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="InvoicedToDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="AgreementTypes">
+    <Key>
+      <PropertyRef Name="AgreementTypeId" />
+    </Key>
+    <Property Name="AgreementTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Article" Type="varchar(max)" />
+    <Property Name="Text" Type="varchar(max)" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="NumberOfMonths" Type="int" />
+  </EntityType>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleID" />
+    </Key>
+    <Property Name="ArticleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MainID" Type="int" />
+    <Property Name="Version" Type="smallint" Nullable="false" />
+    <Property Name="Status" Type="smallint" Nullable="false" />
+    <Property Name="PublishStatus" Type="smallint" Nullable="false" />
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="Headline" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="ShowDate" Type="datetime" Nullable="false" />
+    <Property Name="ExpireDate" Type="datetime" />
+    <Property Name="Abstract" Type="ntext" />
+    <Property Name="Fullstory" Type="ntext" />
+    <Property Name="TOC" Type="ntext" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="100" />
+    <Property Name="Discuss" Type="bit" Nullable="false" />
+    <Property Name="PictureID" Type="int" />
+    <Property Name="meta_description" Type="nvarchar" MaxLength="255" />
+    <Property Name="meta_keywords" Type="nvarchar" MaxLength="255" />
+    <Property Name="LockStatus" Type="bit" Nullable="false" />
+    <Property Name="LockTime" Type="datetime" />
+    <Property Name="LockedBy" Type="int" />
+    <Property Name="DataObjectID" Type="int" />
+    <Property Name="DataObjectRecordID" Type="int" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="Alias" Type="nvarchar" MaxLength="25" />
+    <Property Name="CompleteArticle" Type="ntext" />
+    <Property Name="PictureDescription" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Article_Article">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MainID" Type="int" Nullable="false" />
+    <Property Name="RelatedMainID" Type="int" Nullable="false" />
+    <Property Name="AssociationID" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article_Banner">
+    <Key>
+      <PropertyRef Name="ObjectId" />
+    </Key>
+    <Property Name="ObjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="BannerId" Type="int" Nullable="false" />
+    <Property Name="AssociationId" Type="int" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Article_MenuItem">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AssociationID" Type="int" Nullable="false" />
+    <Property Name="ArticleID" Type="int" Nullable="false" />
+    <Property Name="MainID" Type="int" Nullable="false" />
+    <Property Name="MenuItemID" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="BannerId" />
+    </Key>
+    <Property Name="BannerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BannerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="ShowDate" Type="datetime" Nullable="false" />
+    <Property Name="ExpireDate" Type="datetime" />
+    <Property Name="Status" Type="smallint" Nullable="false" />
+    <Property Name="Impressions" Type="int" Nullable="false" />
+    <Property Name="MaxImpressions" Type="int" />
+    <Property Name="Clicks" Type="int" Nullable="false" />
+    <Property Name="MaxClicks" Type="int" />
+    <Property Name="DestinationLinkId" Type="int" />
+    <Property Name="ContentType" Type="tinyint" Nullable="false" />
+    <Property Name="PictureId" Type="int" />
+    <Property Name="PictureLinkId" Type="int" />
+    <Property Name="HtmlText" Type="nvarchar" MaxLength="3000" />
+    <Property Name="DocumentId" Type="int" />
+    <Property Name="Width" Type="int" Nullable="false" />
+    <Property Name="Height" Type="int" Nullable="false" />
+    <Property Name="FlashVersion" Type="smallint" Nullable="false" />
+    <Property Name="DataObjectId" Type="int" />
+    <Property Name="DataObjectRecordId" Type="int" />
+    <Property Name="MetaKeywords" Type="nvarchar" MaxLength="300" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingDetail">
+    <Key>
+      <PropertyRef Name="BookingID" />
+    </Key>
+    <Property Name="BookingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BookingType" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ServiceID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="BookingName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="NoOfPeople" Type="int" />
+    <Property Name="FromDate" Type="datetime" />
+    <Property Name="ToDate" Type="datetime" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="IsFoodOrder" Type="bit" Nullable="false" />
+    <Property Name="Status" Type="int" />
+    <Property Name="BuildingID" Type="int" Nullable="false" />
+    <Property Name="ServiceType" Type="int" Nullable="false" />
+    <Property Name="SendMessageType" Type="int" Nullable="false" />
+    <Property Name="UnitText" Type="nvarchar" MaxLength="200" />
+    <Property Name="Quantity" Type="float" />
+    <Property Name="UnitPrice" Type="float" />
+    <Property Name="DiscountPercent" Type="float" />
+    <Property Name="NetAmount" Type="float" />
+    <Property Name="VATPercent" Type="float" />
+    <Property Name="Amount" Type="float" />
+    <Property Name="MainBookingId" Type="int" />
+    <Property Name="FollowUpDate" Type="datetime" />
+    <Property Name="Customer" Type="int" />
+    <Property Name="Ordering" Type="int" />
+    <Property Name="Note" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsDeliver" Type="bit" />
+    <Property Name="IsClean" Type="bit" />
+    <Property Name="IsInternal" Type="bit" Nullable="false" />
+    <Property Name="InvoMessage" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsMVA" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookingMessage">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="BookingID" Type="int" />
+    <Property Name="To" Type="nvarchar" MaxLength="255" />
+    <Property Name="Body" Type="nvarchar(max)" />
+    <Property Name="Attachments" Type="nvarchar" MaxLength="255" />
+    <Property Name="SendTime" Type="date" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="BookingPriceDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IsInternal" Type="bit" Nullable="false" />
+    <Property Name="Article1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Article2" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UnitId" Type="int" Nullable="false" />
+    <Property Name="UnitDesc" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="From" Type="int" Nullable="false" />
+    <Property Name="To" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BookingServiceList">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodID" Type="int" Nullable="false" />
+    <Property Name="Qty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="BookingID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="ArticleId" Type="nvarchar" MaxLength="100" />
+    <Property Name="Tekst" Type="nvarchar" MaxLength="500" />
+    <Property Name="Sum" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsKitchen" Type="bit" />
+    <Property Name="DiscountPercent" Type="float" />
+    <Property Name="NetAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="VATPercent" Type="float" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UnitText" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsVat" Type="bit" />
+    <Property Name="IsMainService" Type="bit" />
+    <Property Name="OrderHeadId" Type="int" />
+    <Property Name="ServiceName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Time" Type="nvarchar" MaxLength="150" />
+    <Property Name="CostPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CostTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataObjectPage">
+    <Key>
+      <PropertyRef Name="PageID" />
+    </Key>
+    <Property Name="PageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataObjectID" Type="int" Nullable="false" />
+    <Property Name="PageNumber" Type="int" Nullable="false" />
+    <Property Name="TopText" Type="nvarchar" MaxLength="2000" />
+    <Property Name="BottomText" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PageHTML" Type="ntext" Nullable="false" />
+    <Property Name="FilteredHTML" Type="ntext" Nullable="false" />
+    <Property Name="PageXML" Type="ntext" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="PageHiddenHTML" Type="ntext" />
+  </EntityType>
+  <EntityType Name="MenuItem">
+    <Key>
+      <PropertyRef Name="MenuItemID" />
+    </Key>
+    <Property Name="MenuItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuItemName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Parentid" Type="int" />
+    <Property Name="Status" Type="tinyint" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Protected" Type="smallint" Nullable="false" />
+    <Property Name="TemplateID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="tinyint" Nullable="false" />
+    <Property Name="Showdate" Type="datetime" Nullable="false" />
+    <Property Name="Expiredate" Type="datetime" />
+    <Property Name="URL" Type="nvarchar" MaxLength="500" />
+    <Property Name="Target" Type="nvarchar" MaxLength="20" />
+    <Property Name="Pictureid" Type="int" />
+    <Property Name="Sortorder" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="DataObjectID" Type="int" />
+    <Property Name="DataObjectRecordID" Type="int" />
+    <Property Name="Lvl" Type="int" />
+    <Property Name="hierarchy" Type="varchar" MaxLength="900" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="Fullpath" Type="nvarchar" MaxLength="900" />
+    <Property Name="MetaKey" Type="nvarchar" MaxLength="200" />
+    <Property Name="MetaDescription" Type="nvarchar" MaxLength="300" />
+    <Property Name="Alias" Type="nvarchar" MaxLength="25" />
+    <Property Name="TypeHierarchy" Type="varchar" MaxLength="100" />
+    <Property Name="AliasHierarchy" Type="nvarchar" MaxLength="900" />
+    <Property Name="LCID" Type="int" />
+    <Property Name="RSSEnabled" Type="smallint" Nullable="false" />
+    <Property Name="RSSMaxNoOfArticles" Type="int" />
+    <Property Name="ArticleTemplateID" Type="int" />
+  </EntityType>
+  <EntityType Name="Note">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="NoteText" Type="nvarchar(max)" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Orderhead">
+    <Key>
+      <PropertyRef Name="OrderNo" />
+    </Key>
+    <Property Name="OrderNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Orderdate" Type="datetime" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CustomerNo" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="OurReference" Type="nvarchar" MaxLength="255" />
+    <Property Name="YourReference" Type="nvarchar" MaxLength="255" />
+    <Property Name="EmailAddress" Type="nvarchar" MaxLength="255" />
+    <Property Name="VAT" Type="int" Nullable="false" />
+    <Property Name="Ordertype" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ERPClient" Type="nvarchar" MaxLength="255" />
+    <Property Name="Status" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="IsDeliver" Type="bit" />
+    <Property Name="IsClean" Type="bit" />
+    <Property Name="NoOFPeople" Type="int" />
+    <Property Name="Todate" Type="datetime" />
+    <Property Name="FromDate" Type="datetime" />
+    <Property Name="bookingId" Type="int" />
+    <Property Name="VismaOrderNo" Type="int" />
+    <Property Name="VismaOrderDate" Type="datetime" />
+    <Property Name="ISVismaOrder" Type="bit" />
+    <Property Name="IsOrderConfirm" Type="bit" />
+    <Property Name="VMOrderFailedErrorMessage" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Orderlines">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodID" Type="int" Nullable="false" />
+    <Property Name="Qty" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="BookingID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="ArticleId" Type="nvarchar" MaxLength="100" />
+    <Property Name="Tekst" Type="nvarchar" MaxLength="500" />
+    <Property Name="Sum" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="IsKitchen" Type="bit" />
+    <Property Name="DiscountPercent" Type="float" />
+    <Property Name="NetAmount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="VATPercent" Type="float" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UnitText" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsVat" Type="bit" />
+    <Property Name="IsMainService" Type="bit" />
+    <Property Name="OrderHeadId" Type="int" Nullable="false" />
+    <Property Name="ServiceName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Time" Type="nvarchar" MaxLength="150" />
+    <Property Name="CostPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CostTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SortOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="OrganizationUnit">
+    <Key>
+      <PropertyRef Name="OrganizationUnitID" />
+    </Key>
+    <Property Name="OrganizationUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrganizationUnitName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Type" Type="tinyint" Nullable="false" />
+    <Property Name="PictureID" Type="int" />
+    <Property Name="Url" Type="nvarchar" MaxLength="255" />
+    <Property Name="Code" Type="nvarchar" MaxLength="20" />
+    <Property Name="OrgNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="RefNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="Telephone" Type="varchar" MaxLength="25" />
+    <Property Name="Telephone2" Type="varchar" MaxLength="25" />
+    <Property Name="Fax" Type="varchar" MaxLength="25" />
+    <Property Name="Email" Type="nvarchar" MaxLength="255" />
+    <Property Name="Email2" Type="nvarchar" MaxLength="255" />
+    <Property Name="Branch" Type="tinyint" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="ntext" />
+    <Property Name="LongDescription" Type="ntext" />
+    <Property Name="ParentID" Type="int" />
+    <Property Name="Lvl" Type="int" />
+    <Property Name="Hierarchy" Type="varchar" MaxLength="900" />
+    <Property Name="FullPath" Type="nvarchar" MaxLength="900" />
+    <Property Name="Status" Type="tinyint" Nullable="false" />
+    <Property Name="Custom1" Type="nvarchar" MaxLength="255" />
+    <Property Name="Custom2" Type="nvarchar" MaxLength="255" />
+    <Property Name="Custom3" Type="nvarchar" MaxLength="255" />
+    <Property Name="Homepage" Type="ntext" />
+    <Property Name="ExternalID" Type="nvarchar" MaxLength="100" />
+    <Property Name="WorkingHoursStart" Type="varchar" MaxLength="4" />
+    <Property Name="WorkingHoursEnd" Type="varchar" MaxLength="4" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrganizationUnit_Person">
+    <Key>
+      <PropertyRef Name="ObjectID" />
+    </Key>
+    <Property Name="ObjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonID" Type="int" Nullable="false" />
+    <Property Name="OrganizationUnitID" Type="int" Nullable="false" />
+    <Property Name="AssociationID" Type="int" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GivenName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FamilyName" Type="nvarchar" MaxLength="100" />
+    <Property Name="AdditionalNames" Type="nvarchar" MaxLength="100" />
+    <Property Name="NamePrefix" Type="nvarchar" MaxLength="100" />
+    <Property Name="NameSuffix" Type="nvarchar" MaxLength="100" />
+    <Property Name="NickName" Type="nvarchar" MaxLength="100" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LoginName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="OfficeFunction" Type="nvarchar" MaxLength="255" />
+    <Property Name="PictureID" Type="int" />
+    <Property Name="EmployeeNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="PasswordHash" Type="varchar" MaxLength="50" />
+    <Property Name="PasswordSalt" Type="varchar" MaxLength="50" />
+    <Property Name="Priority" Type="int" />
+    <Property Name="Birthdate" Type="datetime" />
+    <Property Name="DateOfJoining" Type="datetime" />
+    <Property Name="CanReceiveHTMLMail" Type="bit" Nullable="false" />
+    <Property Name="IMAddress" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="175" />
+    <Property Name="Email2" Type="nvarchar" MaxLength="175" />
+    <Property Name="Email3" Type="nvarchar" MaxLength="175" />
+    <Property Name="Url" Type="nvarchar" MaxLength="255" />
+    <Property Name="Fax" Type="varchar" MaxLength="25" />
+    <Property Name="SMSNumber" Type="varchar" MaxLength="20" />
+    <Property Name="WorkPhone" Type="varchar" MaxLength="25" />
+    <Property Name="Telephone2" Type="varchar" MaxLength="25" />
+    <Property Name="Telephone3" Type="varchar" MaxLength="25" />
+    <Property Name="MobilePhone" Type="varchar" MaxLength="25" />
+    <Property Name="HomePhone" Type="varchar" MaxLength="25" />
+    <Property Name="MartialStatus" Type="nvarchar" MaxLength="20" />
+    <Property Name="PartnerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="PartnersBirthdate" Type="datetime" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="250" />
+    <Property Name="Motto" Type="nvarchar" MaxLength="150" />
+    <Property Name="Education" Type="nvarchar" MaxLength="150" />
+    <Property Name="TimeZone" Type="decimal" Precision="4" Scale="2" />
+    <Property Name="Course" Type="nvarchar" MaxLength="150" />
+    <Property Name="Expertise" Type="nvarchar" MaxLength="150" />
+    <Property Name="Certification" Type="nvarchar" MaxLength="150" />
+    <Property Name="LongDescription" Type="ntext" />
+    <Property Name="Status" Type="tinyint" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="GUID" Type="uniqueidentifier" />
+    <Property Name="Custom1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Custom2" Type="nvarchar" MaxLength="100" />
+    <Property Name="Custom3" Type="nvarchar" MaxLength="100" />
+    <Property Name="RTL" Type="bit" Nullable="false" />
+    <Property Name="Culture" Type="varchar" MaxLength="10" />
+    <Property Name="UICulture" Type="varchar" MaxLength="10" />
+    <Property Name="WorkingHoursStart" Type="varchar" MaxLength="4" />
+    <Property Name="WorkingHoursEnd" Type="varchar" MaxLength="4" />
+    <Property Name="ExternalID" Type="nvarchar" MaxLength="100" />
+    <Property Name="PasswordExpiryDate" Type="datetime" />
+    <Property Name="ExpireDate" Type="datetime" />
+    <Property Name="Theme" Type="int" />
+    <Property Name="DeviceId" Type="nvarchar(max)" />
+    <Property Name="LastLogin" Type="datetime" />
+    <Property Name="PlatformType" Type="int" />
+  </EntityType>
+  <EntityType Name="PictureProperty">
+    <Key>
+      <PropertyRef Name="PicturePropertyID" />
+    </Key>
+    <Property Name="PicturePropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PictureMainID" Type="int" Nullable="false" />
+    <Property Name="Filepath" Type="nvarchar" MaxLength="255" />
+    <Property Name="Height" Type="int" Nullable="false" />
+    <Property Name="Width" Type="int" Nullable="false" />
+    <Property Name="FileSize" Type="int" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="IsDefault" Type="bit" Nullable="false" />
+    <Property Name="IsThumbnail" Type="bit" Nullable="false" />
+    <Property Name="IsOriginal" Type="bit" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="255" />
+    <Property Name="PersonID" Type="int" />
+  </EntityType>
+  <EntityType Name="Preferences">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Settings" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserGroup">
+    <Key>
+      <PropertyRef Name="UserGroupId" />
+    </Key>
+    <Property Name="UserGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserGroupName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserGroup_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserGroupId" Type="int" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <Association Name="FK__Article__MainID__275C321F">
+    <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+    <End Role="Article1" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Article1">
+        <PropertyRef Name="MainID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Banner__Picturei__411C0422">
+    <End Role="PictureProperty" Type="Self.PictureProperty" Multiplicity="0..1" />
+    <End Role="Banner" Type="Self.Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="PictureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MenuItem__Parent__15FC9BF3">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="0..1" />
+    <End Role="MenuItem1" Type="Self.MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="MenuItemID" />
+      </Principal>
+      <Dependent Role="MenuItem1">
+        <PropertyRef Name="Parentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MenuItem__Pictur__13202F48">
+    <End Role="PictureProperty" Type="Self.PictureProperty" Multiplicity="0..1" />
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="MenuItem">
+        <PropertyRef Name="Pictureid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Organizat__Organ__2EC849BD">
+    <End Role="OrganizationUnit" Type="Self.OrganizationUnit" Multiplicity="1" />
+    <End Role="OrganizationUnit_Person" Type="Self.OrganizationUnit_Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrganizationUnit">
+        <PropertyRef Name="OrganizationUnitID" />
+      </Principal>
+      <Dependent Role="OrganizationUnit_Person">
+        <PropertyRef Name="OrganizationUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Organizat__Perso__2CE0014B">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="OrganizationUnit_Person" Type="Self.OrganizationUnit_Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="OrganizationUnit_Person">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Organizat__Pictu__2A0394A0">
+    <End Role="PictureProperty" Type="Self.PictureProperty" Multiplicity="0..1" />
+    <End Role="OrganizationUnit" Type="Self.OrganizationUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="OrganizationUnit">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Person__PictureI__31A4B668">
+    <End Role="PictureProperty" Type="Self.PictureProperty" Multiplicity="0..1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PicturePr__Perso__28C557A4">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="PictureProperty" Type="Self.PictureProperty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="PictureProperty">
+        <PropertyRef Name="PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Banner_Article">
+    <End Role="Article" Type="Self.Article" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Article_Banner" Type="Self.Article_Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Article_Banner">
+        <PropertyRef Name="ArticleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_Banner_Banner">
+    <End Role="Banner" Type="Self.Banner" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Article_Banner" Type="Self.Article_Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Banner">
+        <PropertyRef Name="BannerId" />
+      </Principal>
+      <Dependent Role="Article_Banner">
+        <PropertyRef Name="BannerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_MenuItem_Article">
+    <End Role="Article" Type="Self.Article" Multiplicity="1" />
+    <End Role="Article_MenuItem" Type="Self.Article_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Article_MenuItem">
+        <PropertyRef Name="ArticleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_MenuItem_Article1">
+    <End Role="Article" Type="Self.Article" Multiplicity="1" />
+    <End Role="Article_MenuItem" Type="Self.Article_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Article">
+        <PropertyRef Name="ArticleID" />
+      </Principal>
+      <Dependent Role="Article_MenuItem">
+        <PropertyRef Name="MainID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_MenuItem_MenuItem">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="1" />
+    <End Role="Article_MenuItem" Type="Self.Article_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="MenuItemID" />
+      </Principal>
+      <Dependent Role="Article_MenuItem">
+        <PropertyRef Name="MenuItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Article_PictureProperty">
+    <End Role="PictureProperty" Type="Self.PictureProperty" Multiplicity="0..1" />
+    <End Role="Article" Type="Self.Article" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PictureProperty">
+        <PropertyRef Name="PicturePropertyID" />
+      </Principal>
+      <Dependent Role="Article">
+        <PropertyRef Name="PictureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banner_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Banner" Type="Self.Banner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Banner">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodService_BookingDetail">
+    <End Role="BookingDetail" Type="Self.BookingDetail" Multiplicity="1" />
+    <End Role="BookingServiceList" Type="Self.BookingServiceList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookingDetail">
+        <PropertyRef Name="BookingID" />
+      </Principal>
+      <Dependent Role="BookingServiceList">
+        <PropertyRef Name="BookingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orderline_Orderhead">
+    <End Role="Orderhead" Type="Self.Orderhead" Multiplicity="1" />
+    <End Role="Orderlines" Type="Self.Orderlines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orderhead">
+        <PropertyRef Name="OrderNo" />
+      </Principal>
+      <Dependent Role="Orderlines">
+        <PropertyRef Name="OrderHeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BraathenEiendomModelStoreContainer">
+    <EntitySet Name="Agreements" EntityType="Self.Agreements" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AgreementTypes" EntityType="Self.AgreementTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Article_Article" EntityType="Self.Article_Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Article_Banner" EntityType="Self.Article_Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Article_MenuItem" EntityType="Self.Article_MenuItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingDetail" EntityType="Self.BookingDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingMessage" EntityType="Self.BookingMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingPriceDetail" EntityType="Self.BookingPriceDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BookingServiceList" EntityType="Self.BookingServiceList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DataObjectPage" EntityType="Self.DataObjectPage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuItem" EntityType="Self.MenuItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Note" EntityType="Self.Note" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orderhead" EntityType="Self.Orderhead" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orderlines" EntityType="Self.Orderlines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationUnit" EntityType="Self.OrganizationUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganizationUnit_Person" EntityType="Self.OrganizationUnit_Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PictureProperty" EntityType="Self.PictureProperty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Preferences" EntityType="Self.Preferences" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroup_User" EntityType="Self.UserGroup_User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Article__MainID__275C321F" Association="Self.FK__Article__MainID__275C321F">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article1" EntitySet="Article" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Banner__Picturei__411C0422" Association="Self.FK__Banner__Picturei__411C0422">
+      <End Role="PictureProperty" EntitySet="PictureProperty" />
+      <End Role="Banner" EntitySet="Banner" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MenuItem__Parent__15FC9BF3" Association="Self.FK__MenuItem__Parent__15FC9BF3">
+      <End Role="MenuItem" EntitySet="MenuItem" />
+      <End Role="MenuItem1" EntitySet="MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MenuItem__Pictur__13202F48" Association="Self.FK__MenuItem__Pictur__13202F48">
+      <End Role="PictureProperty" EntitySet="PictureProperty" />
+      <End Role="MenuItem" EntitySet="MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Organizat__Organ__2EC849BD" Association="Self.FK__Organizat__Organ__2EC849BD">
+      <End Role="OrganizationUnit" EntitySet="OrganizationUnit" />
+      <End Role="OrganizationUnit_Person" EntitySet="OrganizationUnit_Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Organizat__Perso__2CE0014B" Association="Self.FK__Organizat__Perso__2CE0014B">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="OrganizationUnit_Person" EntitySet="OrganizationUnit_Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Organizat__Pictu__2A0394A0" Association="Self.FK__Organizat__Pictu__2A0394A0">
+      <End Role="PictureProperty" EntitySet="PictureProperty" />
+      <End Role="OrganizationUnit" EntitySet="OrganizationUnit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Person__PictureI__31A4B668" Association="Self.FK__Person__PictureI__31A4B668">
+      <End Role="PictureProperty" EntitySet="PictureProperty" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PicturePr__Perso__28C557A4" Association="Self.FK__PicturePr__Perso__28C557A4">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="PictureProperty" EntitySet="PictureProperty" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Banner_Article" Association="Self.FK_Article_Banner_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_Banner" EntitySet="Article_Banner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_Banner_Banner" Association="Self.FK_Article_Banner_Banner">
+      <End Role="Banner" EntitySet="Banner" />
+      <End Role="Article_Banner" EntitySet="Article_Banner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_MenuItem_Article" Association="Self.FK_Article_MenuItem_Article">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_MenuItem" EntitySet="Article_MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_MenuItem_Article1" Association="Self.FK_Article_MenuItem_Article1">
+      <End Role="Article" EntitySet="Article" />
+      <End Role="Article_MenuItem" EntitySet="Article_MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_MenuItem_MenuItem" Association="Self.FK_Article_MenuItem_MenuItem">
+      <End Role="MenuItem" EntitySet="MenuItem" />
+      <End Role="Article_MenuItem" EntitySet="Article_MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Article_PictureProperty" Association="Self.FK_Article_PictureProperty">
+      <End Role="PictureProperty" EntitySet="PictureProperty" />
+      <End Role="Article" EntitySet="Article" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banner_Person" Association="Self.FK_Banner_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Banner" EntitySet="Banner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodService_BookingDetail" Association="Self.FK_FoodService_BookingDetail">
+      <End Role="BookingDetail" EntitySet="BookingDetail" />
+      <End Role="BookingServiceList" EntitySet="BookingServiceList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orderline_Orderhead" Association="Self.FK_Orderline_Orderhead">
+      <End Role="Orderhead" EntitySet="Orderhead" />
+      <End Role="Orderlines" EntitySet="Orderlines" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

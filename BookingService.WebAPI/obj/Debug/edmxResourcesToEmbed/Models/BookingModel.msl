@@ -1,0 +1,510 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BraathenEiendomModelStoreContainer" CdmEntityContainer="BraathenEiendomEntities">
+    <EntitySetMapping Name="MenuItems">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.MenuItem">
+        <MappingFragment StoreEntitySet="MenuItem">
+          <ScalarProperty Name="ArticleTemplateID" ColumnName="ArticleTemplateID" />
+          <ScalarProperty Name="RSSMaxNoOfArticles" ColumnName="RSSMaxNoOfArticles" />
+          <ScalarProperty Name="RSSEnabled" ColumnName="RSSEnabled" />
+          <ScalarProperty Name="LCID" ColumnName="LCID" />
+          <ScalarProperty Name="AliasHierarchy" ColumnName="AliasHierarchy" />
+          <ScalarProperty Name="TypeHierarchy" ColumnName="TypeHierarchy" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+          <ScalarProperty Name="MetaKey" ColumnName="MetaKey" />
+          <ScalarProperty Name="Fullpath" ColumnName="Fullpath" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="hierarchy" ColumnName="hierarchy" />
+          <ScalarProperty Name="Lvl" ColumnName="Lvl" />
+          <ScalarProperty Name="DataObjectRecordID" ColumnName="DataObjectRecordID" />
+          <ScalarProperty Name="DataObjectID" ColumnName="DataObjectID" />
+          <ScalarProperty Name="Sortorder" ColumnName="Sortorder" />
+          <ScalarProperty Name="Pictureid" ColumnName="Pictureid" />
+          <ScalarProperty Name="Target" ColumnName="Target" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Expiredate" ColumnName="Expiredate" />
+          <ScalarProperty Name="Showdate" ColumnName="Showdate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+          <ScalarProperty Name="Protected" ColumnName="Protected" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Parentid" ColumnName="Parentid" />
+          <ScalarProperty Name="MenuItemName" ColumnName="MenuItemName" />
+          <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="PlatformType" ColumnName="PlatformType" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+          <ScalarProperty Name="Theme" ColumnName="Theme" />
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="PasswordExpiryDate" ColumnName="PasswordExpiryDate" />
+          <ScalarProperty Name="ExternalID" ColumnName="ExternalID" />
+          <ScalarProperty Name="WorkingHoursEnd" ColumnName="WorkingHoursEnd" />
+          <ScalarProperty Name="WorkingHoursStart" ColumnName="WorkingHoursStart" />
+          <ScalarProperty Name="UICulture" ColumnName="UICulture" />
+          <ScalarProperty Name="Culture" ColumnName="Culture" />
+          <ScalarProperty Name="RTL" ColumnName="RTL" />
+          <ScalarProperty Name="Custom3" ColumnName="Custom3" />
+          <ScalarProperty Name="Custom2" ColumnName="Custom2" />
+          <ScalarProperty Name="Custom1" ColumnName="Custom1" />
+          <ScalarProperty Name="GUID" ColumnName="GUID" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+          <ScalarProperty Name="Certification" ColumnName="Certification" />
+          <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="Motto" ColumnName="Motto" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="PartnersBirthdate" ColumnName="PartnersBirthdate" />
+          <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+          <ScalarProperty Name="MartialStatus" ColumnName="MartialStatus" />
+          <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+          <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+          <ScalarProperty Name="Telephone3" ColumnName="Telephone3" />
+          <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+          <ScalarProperty Name="WorkPhone" ColumnName="WorkPhone" />
+          <ScalarProperty Name="SMSNumber" ColumnName="SMSNumber" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Email3" ColumnName="Email3" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IMAddress" ColumnName="IMAddress" />
+          <ScalarProperty Name="CanReceiveHTMLMail" ColumnName="CanReceiveHTMLMail" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmployeeNo" ColumnName="EmployeeNo" />
+          <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+          <ScalarProperty Name="OfficeFunction" ColumnName="OfficeFunction" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="NickName" ColumnName="NickName" />
+          <ScalarProperty Name="NameSuffix" ColumnName="NameSuffix" />
+          <ScalarProperty Name="NamePrefix" ColumnName="NamePrefix" />
+          <ScalarProperty Name="AdditionalNames" ColumnName="AdditionalNames" />
+          <ScalarProperty Name="FamilyName" ColumnName="FamilyName" />
+          <ScalarProperty Name="GivenName" ColumnName="GivenName" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationUnits">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.OrganizationUnit">
+        <MappingFragment StoreEntitySet="OrganizationUnit">
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="WorkingHoursEnd" ColumnName="WorkingHoursEnd" />
+          <ScalarProperty Name="WorkingHoursStart" ColumnName="WorkingHoursStart" />
+          <ScalarProperty Name="ExternalID" ColumnName="ExternalID" />
+          <ScalarProperty Name="Homepage" ColumnName="Homepage" />
+          <ScalarProperty Name="Custom3" ColumnName="Custom3" />
+          <ScalarProperty Name="Custom2" ColumnName="Custom2" />
+          <ScalarProperty Name="Custom1" ColumnName="Custom1" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="FullPath" ColumnName="FullPath" />
+          <ScalarProperty Name="Hierarchy" ColumnName="Hierarchy" />
+          <ScalarProperty Name="Lvl" ColumnName="Lvl" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="LongDescription" ColumnName="LongDescription" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="Email2" ColumnName="Email2" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="OrgNumber" ColumnName="OrgNumber" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="OrganizationUnitName" ColumnName="OrganizationUnitName" />
+          <ScalarProperty Name="OrganizationUnitID" ColumnName="OrganizationUnitID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganizationUnit_Person">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.OrganizationUnit_Person">
+        <MappingFragment StoreEntitySet="OrganizationUnit_Person">
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="AssociationID" ColumnName="AssociationID" />
+          <ScalarProperty Name="OrganizationUnitID" ColumnName="OrganizationUnitID" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PictureProperties">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.PictureProperty">
+        <MappingFragment StoreEntitySet="PictureProperty">
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="IsOriginal" ColumnName="IsOriginal" />
+          <ScalarProperty Name="IsThumbnail" ColumnName="IsThumbnail" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Filepath" ColumnName="Filepath" />
+          <ScalarProperty Name="PictureMainID" ColumnName="PictureMainID" />
+          <ScalarProperty Name="PicturePropertyID" ColumnName="PicturePropertyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_Banner">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Article_Banner">
+        <MappingFragment StoreEntitySet="Article_Banner">
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="AssociationId" ColumnName="AssociationId" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+          <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Banners">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Banner">
+        <MappingFragment StoreEntitySet="Banner">
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="DataObjectRecordId" ColumnName="DataObjectRecordId" />
+          <ScalarProperty Name="DataObjectId" ColumnName="DataObjectId" />
+          <ScalarProperty Name="FlashVersion" ColumnName="FlashVersion" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="HtmlText" ColumnName="HtmlText" />
+          <ScalarProperty Name="PictureLinkId" ColumnName="PictureLinkId" />
+          <ScalarProperty Name="PictureId" ColumnName="PictureId" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="DestinationLinkId" ColumnName="DestinationLinkId" />
+          <ScalarProperty Name="MaxClicks" ColumnName="MaxClicks" />
+          <ScalarProperty Name="Clicks" ColumnName="Clicks" />
+          <ScalarProperty Name="MaxImpressions" ColumnName="MaxImpressions" />
+          <ScalarProperty Name="Impressions" ColumnName="Impressions" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="BannerName" ColumnName="BannerName" />
+          <ScalarProperty Name="BannerId" ColumnName="BannerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroup_User">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.UserGroup_User">
+        <MappingFragment StoreEntitySet="UserGroup_User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroups">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.UserGroup">
+        <MappingFragment StoreEntitySet="UserGroup">
+          <ScalarProperty Name="UserGroupName" ColumnName="UserGroupName" />
+          <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Articles">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Article">
+        <MappingFragment StoreEntitySet="Article">
+          <ScalarProperty Name="PictureDescription" ColumnName="PictureDescription" />
+          <ScalarProperty Name="CompleteArticle" ColumnName="CompleteArticle" />
+          <ScalarProperty Name="Alias" ColumnName="Alias" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="DataObjectRecordID" ColumnName="DataObjectRecordID" />
+          <ScalarProperty Name="DataObjectID" ColumnName="DataObjectID" />
+          <ScalarProperty Name="LockedBy" ColumnName="LockedBy" />
+          <ScalarProperty Name="LockTime" ColumnName="LockTime" />
+          <ScalarProperty Name="LockStatus" ColumnName="LockStatus" />
+          <ScalarProperty Name="meta_keywords" ColumnName="meta_keywords" />
+          <ScalarProperty Name="meta_description" ColumnName="meta_description" />
+          <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+          <ScalarProperty Name="Discuss" ColumnName="Discuss" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="TOC" ColumnName="TOC" />
+          <ScalarProperty Name="Fullstory" ColumnName="Fullstory" />
+          <ScalarProperty Name="Abstract" ColumnName="Abstract" />
+          <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
+          <ScalarProperty Name="ShowDate" ColumnName="ShowDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Headline" ColumnName="Headline" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="PublishStatus" ColumnName="PublishStatus" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="MainID" ColumnName="MainID" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_MenuItem">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Article_MenuItem">
+        <MappingFragment StoreEntitySet="Article_MenuItem">
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+          <ScalarProperty Name="MainID" ColumnName="MainID" />
+          <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+          <ScalarProperty Name="AssociationID" ColumnName="AssociationID" />
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingMessages">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.BookingMessage">
+        <MappingFragment StoreEntitySet="BookingMessage">
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+          <ScalarProperty Name="Attachments" ColumnName="Attachments" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Preferences">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Preference">
+        <MappingFragment StoreEntitySet="Preferences">
+          <ScalarProperty Name="Settings" ColumnName="Settings" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Note">
+        <MappingFragment StoreEntitySet="Note">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="NoteText" ColumnName="NoteText" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataObjectPages">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.DataObjectPage">
+        <MappingFragment StoreEntitySet="DataObjectPage">
+          <ScalarProperty Name="PageHiddenHTML" ColumnName="PageHiddenHTML" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="PageXML" ColumnName="PageXML" />
+          <ScalarProperty Name="FilteredHTML" ColumnName="FilteredHTML" />
+          <ScalarProperty Name="PageHTML" ColumnName="PageHTML" />
+          <ScalarProperty Name="BottomText" ColumnName="BottomText" />
+          <ScalarProperty Name="TopText" ColumnName="TopText" />
+          <ScalarProperty Name="PageNumber" ColumnName="PageNumber" />
+          <ScalarProperty Name="DataObjectID" ColumnName="DataObjectID" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Article_Article">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Article_Article">
+        <MappingFragment StoreEntitySet="Article_Article">
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="AssociationID" ColumnName="AssociationID" />
+          <ScalarProperty Name="RelatedMainID" ColumnName="RelatedMainID" />
+          <ScalarProperty Name="MainID" ColumnName="MainID" />
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingPriceDetails">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.BookingPriceDetail">
+        <MappingFragment StoreEntitySet="BookingPriceDetail">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="To" ColumnName="To" />
+          <ScalarProperty Name="From" ColumnName="From" />
+          <ScalarProperty Name="UnitDesc" ColumnName="UnitDesc" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="Article2" ColumnName="Article2" />
+          <ScalarProperty Name="Article1" ColumnName="Article1" />
+          <ScalarProperty Name="IsInternal" ColumnName="IsInternal" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgreementTypes">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.AgreementType">
+        <MappingFragment StoreEntitySet="AgreementTypes">
+          <ScalarProperty Name="NumberOfMonths" ColumnName="NumberOfMonths" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Article" ColumnName="Article" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AgreementTypeId" ColumnName="AgreementTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Agreements">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Agreement">
+        <MappingFragment StoreEntitySet="Agreements">
+          <ScalarProperty Name="InvoicedToDate" ColumnName="InvoicedToDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="NumberOfMonths" ColumnName="NumberOfMonths" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Article" ColumnName="Article" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="AgreementTypeId" ColumnName="AgreementTypeId" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="AgreementId" ColumnName="AgreementId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingDetails">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.BookingDetail">
+        <MappingFragment StoreEntitySet="BookingDetail">
+          <ScalarProperty Name="IsMVA" ColumnName="IsMVA" />
+          <ScalarProperty Name="InvoMessage" ColumnName="InvoMessage" />
+          <ScalarProperty Name="IsInternal" ColumnName="IsInternal" />
+          <ScalarProperty Name="IsClean" ColumnName="IsClean" />
+          <ScalarProperty Name="IsDeliver" ColumnName="IsDeliver" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Ordering" ColumnName="Ordering" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="FollowUpDate" ColumnName="FollowUpDate" />
+          <ScalarProperty Name="MainBookingId" ColumnName="MainBookingId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="VATPercent" ColumnName="VATPercent" />
+          <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+          <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitText" ColumnName="UnitText" />
+          <ScalarProperty Name="SendMessageType" ColumnName="SendMessageType" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsFoodOrder" ColumnName="IsFoodOrder" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="NoOfPeople" ColumnName="NoOfPeople" />
+          <ScalarProperty Name="BookingName" ColumnName="BookingName" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+          <ScalarProperty Name="BookingType" ColumnName="BookingType" />
+          <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookingServiceLists">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.BookingServiceList">
+        <MappingFragment StoreEntitySet="BookingServiceList">
+          <ScalarProperty Name="CostTotal" ColumnName="CostTotal" />
+          <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="OrderHeadId" ColumnName="OrderHeadId" />
+          <ScalarProperty Name="IsMainService" ColumnName="IsMainService" />
+          <ScalarProperty Name="IsVat" ColumnName="IsVat" />
+          <ScalarProperty Name="UnitText" ColumnName="UnitText" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="VATPercent" ColumnName="VATPercent" />
+          <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+          <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+          <ScalarProperty Name="IsKitchen" ColumnName="IsKitchen" />
+          <ScalarProperty Name="Sum" ColumnName="Sum" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orderheads">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Orderhead">
+        <MappingFragment StoreEntitySet="Orderhead">
+          <ScalarProperty Name="VMOrderFailedErrorMessage" ColumnName="VMOrderFailedErrorMessage" />
+          <ScalarProperty Name="IsOrderConfirm" ColumnName="IsOrderConfirm" />
+          <ScalarProperty Name="ISVismaOrder" ColumnName="ISVismaOrder" />
+          <ScalarProperty Name="VismaOrderDate" ColumnName="VismaOrderDate" />
+          <ScalarProperty Name="VismaOrderNo" ColumnName="VismaOrderNo" />
+          <ScalarProperty Name="bookingId" ColumnName="bookingId" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="Todate" ColumnName="Todate" />
+          <ScalarProperty Name="NoOFPeople" ColumnName="NoOFPeople" />
+          <ScalarProperty Name="IsClean" ColumnName="IsClean" />
+          <ScalarProperty Name="IsDeliver" ColumnName="IsDeliver" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ERPClient" ColumnName="ERPClient" />
+          <ScalarProperty Name="Ordertype" ColumnName="Ordertype" />
+          <ScalarProperty Name="VAT" ColumnName="VAT" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="YourReference" ColumnName="YourReference" />
+          <ScalarProperty Name="OurReference" ColumnName="OurReference" />
+          <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Orderdate" ColumnName="Orderdate" />
+          <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orderlines">
+      <EntityTypeMapping TypeName="BraathenEiendomModel.Orderline">
+        <MappingFragment StoreEntitySet="Orderlines">
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="CostTotal" ColumnName="CostTotal" />
+          <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="OrderHeadId" ColumnName="OrderHeadId" />
+          <ScalarProperty Name="IsMainService" ColumnName="IsMainService" />
+          <ScalarProperty Name="IsVat" ColumnName="IsVat" />
+          <ScalarProperty Name="UnitText" ColumnName="UnitText" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="VATPercent" ColumnName="VATPercent" />
+          <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+          <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+          <ScalarProperty Name="IsKitchen" ColumnName="IsKitchen" />
+          <ScalarProperty Name="Sum" ColumnName="Sum" />
+          <ScalarProperty Name="Tekst" ColumnName="Tekst" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="BookingID" ColumnName="BookingID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
