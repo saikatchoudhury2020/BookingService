@@ -1,0 +1,157 @@
+<div class="modal customModal bookModal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+     
+    <div class="modal-dialog  custmodel-lg modal-lg" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                <label class="priceHeader">
+      
+                  <button type="button" class="close" aria-label="Close" (click)="close()"><span aria-hidden="true">&times;</span></button>
+                </label>
+                <h4 class="modal-title">Opprett kunde</h4>
+                <label *ngIf="displayCustomerWarning" class="msgWarning" [ngStyle]="{'color':colorwaring}">{{ displayCustomerWarning}}</label>
+              
+              </div>
+              <div class="modal-body">
+                  <form class="" novalidate (ngSubmit)="SaveNewCustomer()" [formGroup]="customerForm">
+                    <div class="row headerrow">
+                        <div class="col-md-12">
+      <label class="" for="nameofcustomer">Oppslag Brønnøysundsregistrene</label>
+       
+      <dm-select 
+      [disabled] = "customerForm.get('IsPrivate').value==false? null : 'disabled'"
+      [parentForm]="customerForm"
+      [data]="CustomerData"
+      (search)="getSearch($event)"
+      (scroll)="onScroll($event)"
+      (select)="getSelectedCustomer($event)"
+      [label]="'navn'" 
+      [placeholder]="'Kunde'"
+      (clear)="clearSearch($event)"
+      [control]="ControlName"
+      [value]="'organisasjonsnummer'">
+   </dm-select>
+      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-2">
+                          <label>
+       
+                              <input id="confirmId" type="checkbox" formControlName="IsPrivate" >
+                              Privat 
+                                            </label> 
+                      </div>
+                        <div class="col-md-4" [ngClass]="{'has-error': 
+                        !customerForm.get('Id').valid }">
+                            <label class="" for="kunde">Organisasjonsnummer</label>
+                   
+                                <input [attr.disabled] = "customerForm.get('IsPrivate').value==true? null : 'disabled'"  class="form-control" id="custNumber" formControlName="Id" type="text" placeholder=""/>       
+                                <span class="help-block" *ngIf="
+                                customerForm.get('Id').errors">
+                                <span *ngIf="customerForm.get('Id').errors.required">
+                       
+                                    OrgNo required
+                                                           </span>
+                                
+                                </span>          
+                                            
+                        </div>
+                        <div class="col-md-6" [ngClass]="{'has-error': (customerForm.get('Name').touched ||
+                        customerForm.get('Name').dirty) &&
+                        !customerForm.get('Name').valid }">
+      <label class="" for="nameofCustomer">Navn</label>
+      <input  class="form-control" id="nameofCustomer" type="text" placeholder="Navn (må fylles ut)"
+      formControlName="Name" />
+      <span class="help-block" *ngIf="(customerForm.get('Name').touched ||
+      customerForm.get('Name').dirty) &&
+      customerForm.get('Name').errors">
+      <span *ngIf="customerForm.get('Name').errors.required">
+      Please enter Navn.
+      </span>
+      
+      </span>
+      </div>
+
+                    </div>
+                    <!-- <div class="row">
+                      <div class="col-md-6">
+                          <label class="" for="custEmail">Epost</label>
+                          
+                          <input  class="form-control" id="custEmail" formControlName="Email" type="text" placeholder=""/>       
+                            
+                      </div>
+                      <div class="col-md-6">
+                          <label class="" for="custMobNumber">Telefonnummer</label>
+                          
+                          <input  class="form-control" id="custMobNumber" formControlName="Mobile" type="text" placeholder=""/>       
+                            
+                      </div>
+                    </div> -->
+                    <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Adresse</div>
+                            <div class="panel-body">
+          
+                              <div class="row">
+                                <div class="col-md-6" >
+
+                                    <label for="address1">Adresse 1:</label>
+                                    <input type="text" class="form-control" formControlName="Address1" id="address1">
+        
+                                  </div>
+                                  <div class="col-md-6" >
+
+                                      <label for="address1">Adresse 2:</label>
+                                      <input type="text" class="form-control" formControlName="Address2" id="address2">
+          
+                                    </div>
+                              </div>
+                              <div class="row" >
+                                        <div class="col-md-6" >
+
+                                            <label for="pinlode">Postnummer:</label>
+                                            <input type="text"  class="form-control" formControlName="Pincode" id="pinlode">
+                                           
+                                          </div>
+                                   
+                                        <div class="col-md-6" >
+
+                                            <label for="country">Poststed:</label>
+                                           
+                                            <input type="text"  class="form-control" formControlName="Country" id="country">
+                                          </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12" >
+
+                                    <label for="land">Land:</label>
+                                    <input type="text" class="form-control" formControlName="Land" id="land">
+        
+                                  </div>
+                            </div>
+                            </div>
+                          </div>
+                    </div>
+                    </div>
+                    <button type="submit" [disabled]="!customerForm.valid " class="btn btn-primary">Opprett</button>
+                  </form>
+                
+                    <!-- <div class="row">
+                      <div class="col-md-12">
+                          <ul *ngIf="customerData" class="list-group list-group-flush">
+                              <li class="list-group-item active">Customer Available</li>
+                              <li class="list-group-item">Name :{{customerData.navn}}</li>
+                              <li class="list-group-item">Code :{{customerData.organisasjonsnummer}}</li>
+                             
+                            </ul>
+                         
+                      </div>
+                      
+                        
+                      </div> -->
+                      
+                </div>
+            </div>
+        </div>
+
+  </div>

@@ -1,0 +1,116 @@
+html {
+  position: fixed;
+}
+
+.ipad-container{
+	background: black;
+	color: white;
+	position:absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.event-item{
+	color: yellow;
+	font-size: 1.6em;
+	line-height: 1.5;
+}
+
+.event-item td:nth-child( 1 ){
+	padding-right: 10px;
+}
+
+.main{
+	padding-top: 40px;
+	background: black;
+}
+
+.main h1
+{
+	text-align:center;
+}
+
+.main h2, .main h3{
+	margin-top: 0px;
+	text-align:center;
+}
+
+.main h2{
+	padding-top:10px;
+	font-size: 2.5em;
+}
+
+.main .clock{
+	text-align:center;
+}
+
+.event-list{
+	width: 85%;
+	margin:auto;
+	margin-top: 20px;
+	max-height: 300px;
+    overflow-y: auto;
+}
+
+
+.booking-status{
+	text-align:center;
+	
+}
+
+.busy{
+	background: red;
+}
+
+.available{
+	background: green;
+}
+
+.event-status{
+    display: inline-block;
+    width: 150px;
+    padding: 5px 10px;
+    font-size: 1.2em;
+    border-radius: 20px;
+	text-align:center;
+}
+
+.book > div{
+	display: inline-block;
+	padding: 20px 5px;
+}
+
+.inmeeting{
+	color: red;
+}
+
+.btn-link .glyphicon{
+	font-size: 24px;
+}
+
+button .glyphicon-ok{
+	color: green
+}
+
+button .glyphicon-remove{
+	color: red
+}
+
+
+.nextdates{
+	font-size: 110%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #313131;
+}
+
+.nextdates+tr td{
+	padding-top: 5px;
+}
+
+.description{
+	text-align:center;
+	font-size: 1.2em;
+	color: #a7a7a7;
+	padding: 10px 0px;
+}

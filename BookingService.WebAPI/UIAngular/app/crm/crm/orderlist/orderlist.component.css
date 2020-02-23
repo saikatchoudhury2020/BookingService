@@ -1,0 +1,18 @@
+.orgbtn {
+  margin-top: 35%;
+}
+fieldset {
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.validateModel {
+  top: 24%;
+  left: 12%;
+}
+
+.validTabContent {
+  height: 250px;
+  overflow-y: AUTO;
+  overflow-x: HIDDEN;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>{{userGroupData.name}}</h1>
+	
+	<div class="right">
+		<a [routerLink]="['/crm/userlist']"><i class="fa fa-chevron-left"></i> Tilbake</a>
+	</div>
+    <table id="myTable" class="table">
+        <thead>
+            <tr>
+                <th><input type="checkbox" /></th>
+                <th>Navn</th>
+				<th>Firm</th>
+				<th>Stillingstittel</th>
+				<th>E-post</th>
+				<th>Mobiltelefon</th>
+                <th>Handling</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let person of userGroupData?.personList">
+                <td><input id="myCheck" type="checkbox" /></td>
+                <td><a [routerLink]="['/crm/user', person.id]">{{person.name}}</a></td>
+				<td><a [routerLink]="['/crm/organization', person.companyId]">{{person.companyName}}</a></td>
+				<td>{{person.PositionTitle}}</td>
+				<td>{{person.UserEmail}}</td>
+				<td>{{person.telephone}}</td>
+                <td><a (click)="DeleteUserFromUserList(userGroupData.userGroupId, person.id)">Slett</a> </td>
+            </tr>
+
+        </tbody>
+    </table>
+</body>
+</html>

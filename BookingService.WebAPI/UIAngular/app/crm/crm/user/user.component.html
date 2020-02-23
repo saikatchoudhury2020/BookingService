@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div class="">
+
+    <h1 class="">{{userData?.DisplayName}}</h1>
+
+    <div class="block">{{userData?.Customer}}</div>
+
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#1" data-toggle="tab">Informasjon</a>
+      </li>
+      <li>
+        <a href="#2" data-toggle="tab">Bookings</a>
+      </li>
+      <li>
+        <a href="#3" data-toggle="tab">Communication</a>
+      </li>
+      <li>
+        <a href="#4" data-toggle="tab">Avtaler</a>
+      </li>
+    </ul>
+
+    <div class="tab-content ">
+      <div class="tab-pane active" id="1">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 block">
+          <div class="row">
+            <div class="col-md-5">
+              <table class="table table-user-information listinfo">
+                <tbody>
+                  <tr>
+                    <td>Fornavn:</td>
+                    <td>{{userData?.UserFirstName}}</td>
+                  </tr>
+                  <tr>
+                    <td>Etternavn:</td>
+                    <td>{{userData?.UserLastName}}</td>
+                  </tr>
+                  <tr>
+                    <td>Stillingstittel:</td>
+                    <td>{{userData?.PositionTitle}}</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      E-post:
+                    </td>
+                    <td><a href="mailto:{{userData?.UserEmail}}">{{userData?.UserEmail}}</a></td>
+                  </tr>
+                  <tr>
+                    <td>Telefon:</td>
+                    <td><a href="tel:{{userData?.Mobile}}">{{userData?.Mobile}}</a></td>
+                  </tr>
+                  <tr>
+                    <td>Avdeling:</td>
+                    <td>{{userData?.Department}}</td>
+                  </tr>
+                  <tr>
+                    <td>Status:</td>
+                    <td>{{userData?.state}}</td>
+                  </tr>
+                  <tr>
+
+                    <td>BrukerID</td>
+                    <td>{{userData?.EmployeeId}}</td>
+                  </tr>
+
+                </tbody>
+              </table>
+              <a href="javascript:void;" class="fa fa-trash" (click)="HideUser(userData.UserId)" title="Slett"></a>
+              <confirm-alert [title]="'Slett'" [type]="'Slett'" [question]="'Er du sikker på at du vil slette?'"
+                [ConfirmButtonText]="'Slett'" (notify)="ConfirmCommand($event)"></confirm-alert>
+            </div>
+            <div *ngIf="userData?.PicturePath" class="col-md-7">
+              <div class="block user-picture">
+                <img alt="User Pic" src="../{{userData?.PicturePath}}.img" class="img-responsive" />
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+
+      <div class="tab-pane" id="2">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>BookingName</th>
+              <th>Building</th>
+              <th>Service Group</th>
+              <th>Service</th>
+              <th>From</th>
+              <th>To</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bookEvent of userData?.bookedEvents;let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{bookEvent.title}}</td>
+              <td>{{bookEvent.buildingName}}</td>
+              <td>{{bookEvent.ServiceName}}</td>
+              <td>{{bookEvent.MeetingRoomName}}</td>
+              <td>{{bookEvent.start|date:"dd.MM.yyyy HH:mm"}}</td>
+              <td>{{bookEvent.end|date:"dd.MM.yyyy HH:mm"}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+      <div class="tab-pane" id="3">
+        <div *ngIf="userData" class="block">
+          <message-list [pageCount]="20" [userId]="userData.UserId"></message-list>
+        </div>
+      </div>
+      <div class="tab-pane" id="4">
+        <div class="">
+          <app-agreements [orgId]="0" [userid]="userData.UserId"></app-agreements>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!--<div class="col-md-12">
+            <div class="col-md-4">
+                <div class="portlet light profile-sidebar-portlet bordered">
+                    <a  *ngIf="userData" [routerLink]="['/userDetail', userData?.UserId]"><i class="fa fa-edit fa-3x" aria-hidden="true"></i></a>
+                    <a *ngIf="!userData">{{userData?.UserId}}</a>
+                    <div class="profile-userpic">
+                        <img src="../crm/avatar1.png" class="img-responsive" alt="">
+                    </div>
+
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name"> {{userData?.DisplayName}} </div>
+                        <div class="profile-usertitle-job"><i class="fa fa-briefcase" aria-hidden="true"></i> &nbsp;{{userData?.Department}} </div>
+                    </div>
+                    <div class="profile-userbuttons">
+                        <label class="activeLabel">{{userData?.state}}</label>
+                        <label class="activeLabel">{{userData?.access}}</label>
+
+                    </div>
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li class="active">
+
+                                <i class="fa fa-id-badge" aria-hidden="true"></i> {{userData?.EmployeeId}}
+
+                            </li>
+                            <li class="active">
+
+
+                                <i class="fa fa-envelope" aria-hidden="true"></i>{{userData?.UserEmail}}
+
+                            </li>
+                            <li class="active">
+
+                                <i class="fa fa-phone" aria-hidden="true"></i>{{userData?.Mobile}}
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="portlet light bordered">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">Booked Services</span>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>BookingName</th>
+                                    <th>Building</th>
+                                    <th>ServiceGroup</th>
+                                    <th>Service</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="active" *ngFor="let bookEvent of userData?.bookedEvents;let i=index">
+                                    <th scope="row">{{i+1}}</th>
+                                    <td>{{bookEvent.title}}</td>
+                                    <td>{{bookEvent.buildingName}}</td>
+                                    <td>{{bookEvent.ServiceName}}</td>
+                                    <td>{{bookEvent.MeetingRoomName}}</td>
+                                    <td>{{bookEvent.start}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+  </div>
+
+</body>
+
+</html>

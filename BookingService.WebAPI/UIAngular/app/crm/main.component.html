@@ -1,0 +1,152 @@
+
+<div class="crm">
+  <div class="row">
+      <div class="col-md-3">
+          <nav id="sidebar">
+
+              <ul class="list-unstyled components">
+
+
+                  <li *ngFor="let building of BuildingData;let i=index">
+                      <div class="menuitem">
+                          <a [routerLink]="['/crm/building', building.informationId+'-'+building.informationTranslationId+'-'+building.organizationId+'-'+building.kitchenMenuId]" class="dm-icon icon-building">
+                              {{building.name}}
+                          </a>
+                          <a href="#{{building.name}}" data-toggle="collapse" [attr.aria-expanded]="i==0?'true':'false'">
+                              <span class="expand-icon"></span>
+                          </a>
+                      </div>
+                      <ul class="collapse list-unstyled {{i==0?'in':''}}" id="{{building.name}}">
+                          <li>
+                              <div class="menuitem">
+                                  <a href="#{{building.name}}Orgs" data-toggle="collapse" aria-expanded="false">
+                                      <span class="expand-icon"></span>
+                                  </a>
+                                
+                                  <a routerLink="/organization/{{building.organizationList.length>0?building.organizationList[0].id:''}}" class="dm-icon icon-servicegroup">
+                                      Leietakere
+                                  </a>
+
+                              </div>
+                              <ul class="collapse  list-unstyled" id="{{building.name}}Orgs">
+                                  <li *ngFor="let orgItem of building.organizationList">
+                                      <div class="menuitem">
+                                          <a href="#{{orgItem.id}}Orgs" data-toggle="collapse" aria-expanded="false">
+                                              <span class="expand-icon"></span>
+                                          </a>
+                                          <a [routerLink]="['/crm/organization', orgItem.id]" class="dm-icon icon-customer" title="{{orgItem.name}}">
+                                              {{orgItem.name}}
+                                          </a>
+
+                                      </div>
+                                      <!--<a [routerLink]="['/user', orgItem.id]">{{orgItem.name}}</a>-->
+                                      <ul class="collapse list-unstyled" id="{{orgItem.id}}Orgs">
+                                        <li *ngFor="let orglst of orgItem.orglist">
+                                                <a href="#{{orglst.id}}Orgs" data-toggle="collapse" aria-expanded="false">
+                                                        <span class="expand-icon"></span>
+                                                    </a>
+                                            <a [routerLink]="['/crm/organization', orglst.id]" class="dm-icon icon-customer" title="{{orglst.name}}">
+                                                {{orglst.name}}
+                                            </a>
+                                            <ul class="collapse list-unstyled" id="{{orglst.id}}Orgs">
+                                                <li *ngFor="let person of orglst.personList">
+                                                    <a [routerLink]="['/crm/user', person.id]" class="dm-icon icon-user" title="{{person.name}}">
+                                                        {{person.name}}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li *ngFor="let person of orgItem.personList">
+                                            <a [routerLink]="['/crm/user', person.id]" class="dm-icon icon-user" title="{{person.name}}">
+                                                {{person.name}}
+                                            </a>
+                                        </li>
+                                    </ul>                                      
+                                  </li>
+                              </ul>
+                          </li>
+
+                          <li *ngFor="let serviceItem of building.serviceList">
+                              <div class="menuitem">
+                                  <a href="#{{serviceItem.id}}Service" aria-expanded="false" data-toggle="collapse">
+                                      <span class="expand-icon"></span>
+                                  </a>
+                                  <a [routerLink]="['/crm/serviceGroup', serviceItem.id]" class="dm-icon icon-servicegroup" title="{{serviceItem.name}}">
+                                      {{serviceItem.name}}
+                                  </a>
+                              </div>
+                              <!--<a [routerLink]="['/menu', serviceItem.id]">{{serviceItem.name}}</a>-->
+                              <ul class="collapse list-unstyled" id="{{serviceItem.id}}Service">
+                                  <li *ngFor="let service of serviceItem.services">
+
+                                      <a [routerLink]="['/crm/service', service.id]" class="dm-icon icon-service" title="{{service.name}}">
+                                          {{service.name}}
+                                      </a>
+
+                                  </li>
+                              </ul>
+                          </li>
+
+
+                      </ul>
+                  </li>
+
+                  <li>
+                      <div class="menuitem">
+                          <a href="javascript:void(0)" class="dm-icon icon-servicegroup">
+                              CRM Funksjoner
+                          </a>
+                      </div>
+                      <ul class="collapse list-unstyled in" id="website">
+                          <li>
+                              <a [routerLink]="['/crm/userlist']" class="dm-icon icon-customer">
+                                  Bruker grupper
+                              </a>
+                          </li>
+                          <li>
+                              <a [routerLink]="['/crm/messagelist']" class="dm-icon icon-customer">
+                                  Message Log
+                              </a>
+                          </li>
+                          <li>
+                              <a [routerLink]="['/crm/orderlist']" class="dm-icon icon-customer">
+                                  Order List
+                              </a>
+                          </li>
+                          <li>
+                                <a [routerLink]="['/crm/agreementtypes']" class="dm-icon icon-customer">
+                                    Avtaletyper
+                                </a>
+                            </li>                          
+                      </ul>
+                  </li>
+                  <li>
+                    <div class="menuitem">
+                        <a href="javascript:void(0)" class="dm-icon icon-servicegroup">
+                                Administrasjon 
+                        </a>
+                    </div>
+                    <ul class="collapse list-unstyled in" id="website">
+                        <li>
+                            <a [routerLink]="['/crm/cache']" class="dm-icon ">
+                                Funksjoner
+                            </a>
+                        </li>
+                      
+                    </ul>
+                </li>
+              </ul>
+
+
+          </nav>
+      </div>
+
+
+      <div class="col-md-9">
+          <div class='container crm-mainarea'>
+              <router-outlet></router-outlet>
+          </div>
+      </div>
+  </div>
+</div>
+

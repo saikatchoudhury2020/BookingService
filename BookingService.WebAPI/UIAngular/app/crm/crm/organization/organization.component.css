@@ -1,0 +1,18 @@
+.orgList {
+  list-style-type: none;
+}
+
+.msgToolbar {
+  display: inline-block;
+  position: fixed;
+  top: 40px;
+  left: 50% !important;
+  transition: all 0.5s ease-in-out;
+  z-index: 1031;
+  color: #333333 !important;
+  background-color: #eaffff;
+  padding: 5px 10px;
+  border: 1px solid #dceaea;
+  border-radius: 4px;
+  font-weight: normal;
+}

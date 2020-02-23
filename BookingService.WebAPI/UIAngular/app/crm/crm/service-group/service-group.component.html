@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="">
+  <h1 class="">{{serviceGrpForm?.name}}</h1>
+
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#1" data-toggle="tab">Informasjon</a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content ">
+            <div class="tab-pane active" id="1">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 ">
+
+
+
+                 
+
+
+                    <div class="row">
+                        <div *ngIf="serviceGrpForm?.picturePath" class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../{{userData?.PicturePath}}.img" class="img-circle img-responsive"> </div>
+
+						<br />
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table listinfo">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Mobil app:
+                                        </td>
+                                        <td>{{serviceGrpForm?.mobileApp}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Service type:
+                                        </td>
+                                        <td>{{serviceGrpForm?.serviceType}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Leieperiode:
+                                        </td>
+                                        <td>{{serviceGrpForm?.timeSpan}}</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>
+                                            Kun forespørsel:
+                                        </td>
+                                        <td>{{serviceGrpForm?.requestOnly}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Forespørsel E-post:
+                                        </td>
+                                        <td>{{serviceGrpForm?.reciever}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tilleggsvalg:</td>
+                                        <td>{{serviceGrpForm?.additionalOption}}</td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>Kapasitet:</td>
+                                        <td>
+                                            {{serviceGrpForm?.capacity}}
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td>Klargjøringstid:</td>
+                                        <td>{{serviceGrpForm?.preparationTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ryddetid:</td>
+                                        <td>{{serviceGrpForm?.cleantime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avbestillingsfrist:</td>
+                                        <td>{{serviceGrpForm?.cancellation}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Åpent fra:
+                                        </td>
+                                        <td>{{serviceGrpForm?.from}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Åpent til:
+                                        </td>
+                                        <td>{{serviceGrpForm?.to}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+         
+
+        </div>
+
+
+
+
+
+    </div>
+</body>
+</html>

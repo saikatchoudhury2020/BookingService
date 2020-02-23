@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="col-md-3">
+      <label class="" for="property">Bygning</label>
+      <select [(ngModel)]="BuildingID" (change)="onChanges()" class="form-control" id="property">
+        <option value="0">Alle</option>
+        <option *ngFor="let property of properties" value={{property.BuildingID}}>
+          {{property.BuildingName}}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label class="" for="propertyService">Tjenestetype</label>
+      <select [(ngModel)]="ServiceType" (change)="onServiceChanges()" class="form-control" id="propertyService">
+        <option value="0">Alle</option>
+        <option *ngFor="let service of propertyServices" value={{service.MenuId}}>
+          {{service.MenuName}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="" for="meetingId">Tjeneste</label>
+      <select [(ngModel)]="ServiceID" (change)="onServiceIDChanges()" class="form-control" id="meetingId">
+        <option value="0">Alle</option>
+        <ng-container *ngIf="subServiceData">
+          <optgroup *ngFor="let s of subServiceData" label="{{s}}">
+            <ng-container *ngFor="let meeting of meetingRooms">
+              <option *ngIf="s===meeting.meta_keywords" value={{meeting.MainID}}>
+                {{meeting.Headline}}
+              </option>
+            </ng-container>
+          </optgroup>
+        </ng-container>
+        <ng-container *ngIf="!subServiceData">
+          <option *ngFor="let meeting of meetingRooms" value={{meeting.MainID}}>
+            {{meeting.Headline}}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label class="" for="customerid">Customer</label>
+      <select [(ngModel)]="Customer" (change)="onCustomerChanges()" class="form-control" id="customerid">
+        <option value="0">Alle</option>
+        <option *ngFor="let organization of organizationListData" value={{organization.Customer}}>
+          {{organization.CustomerName}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <label class="" for="property">user</label>
+      <select [(ngModel)]="UserID" (change)="onUserChanges()" class="form-control" id="UserID">
+        <option value="0">Alle</option>
+        <option *ngFor="let User of currentUserID" value={{User.UserID}}>
+          {{User.User}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+
+
+      <label class="" for="todateId">Fra </label> &nbsp;
+      <div class=" date">
+        <input id="todateId" class="form-control" placeholder="Velg dato" ng2-datetime-picker date-only="true"
+          [close-on-select]="true" (ngModelChange)="changeDate($event.toString())" date-format="DD.MM.YYYY"
+          [(ngModel)]="filterTime.fromDate" name="FromDate" />
+      </div>
+
+    </div>
+    <div class="col-md-3">
+
+
+      <label class="" for="todateId">Til </label> &nbsp;
+      <div class=" date">
+        <input id="todateId" class="form-control" placeholder="Velg dato" ng2-datetime-picker date-only="true"
+          [close-on-select]="true" (ngModelChange)="changeToDate($event.toString())" date-format="DD.MM.YYYY"
+          [(ngModel)]="filterTime.toDate" name="FromDate" />
+      </div>
+
+    </div>
+  </div>
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#tab-Bestillinger" data-toggle="tab">Bestillinger</a>
+    </li>
+    <li>
+      <a href="#tab-Ordrer" data-toggle="tab">Ordrer</a>
+    </li>
+    <li>
+      <a href="#tab-Bekreftet" data-toggle="tab">Bekreftet</a>
+    </li>
+    <li>
+      <a href="#tab-Overfort" data-toggle="tab">Overført</a>
+    </li>
+  </ul><span>
+    <div *ngIf='showloader' class="col-md-8">
+      <div *ngIf="message !=''" class="alert alert-info">{{message}}</div>
+    </div>
+  </span>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab-Bestillinger">
+      <div class="">
+
+        <div *ngIf="message1 !=''" class="alert alert-info">{{message1}}</div>
+        <div style="text-align: right"><button style="display: none;" class="btn btn-primary"
+            (click)="exportAsXLSX()">Export</button><button class="btn btn-primary" (click)="openConfirmwindow()">create
+            order</button> </div>
+        <table id="myTable" class="table">
+          <thead>
+            <tr>
+              <th><input type="checkbox" (change)="selectAllTab1()" [(ngModel)]="isSelectedAllTab1" /></th>
+
+              <th>Booking ID <input type="text" id="myInput" class="filter" onkeyup="myFunctionOrderList()" size="4"
+                  placeholder="Filter" title="Skriv inn et navn"></th>
+              <th>Bygning</th>
+              <th>Kjøkken</th>
+              <th>Levert</th>
+              <th>Ryddet</th>
+              <th>Rom</th>
+              <th>Antall</th>
+              <th>Dato</th>
+              <th>Tekst</th>
+              <th>Beløp</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr
+              *ngFor="let orderlist of BookingsListDisplay | searchfilter : BuildingID: ServiceType : ServiceID : Customer : UserID : filterTime.fromDate : filterTime.toDate">
+              <td><input id="myCheckTab1" type="checkbox" [(ngModel)]="selectedOrderTab1[orderlist.BookingID]" /></td>
+
+              <td><a href="javascript:void;"
+                  (click)="openbooking(orderlist.BookingID,false)">{{orderlist.BookingID}}</a></td>
+              <td>{{orderlist.BuildingName}}</td>
+
+              <td><input id="chkIsKitchen" type="checkbox" disabled="disabled" [(ngModel)]="orderlist.IsKitchen" /></td>
+              <td><input id="chkIsDelivere" type="checkbox" disabled="disabled" [(ngModel)]="orderlist.IsDelivere" />
+              </td>
+              <td><input id="chkIsCleaned" type="checkbox" disabled="disabled" [(ngModel)]="orderlist.IsCleaned" /></td>
+              <td>{{orderlist.MeetingroomName}}</td>
+              <td>{{orderlist.NoOfPerson}}</td>
+              <td>{{ orderlist.FromDate  | date : 'dd.MM.yyyy' }}</td>
+              <td>{{orderlist.Title}}</td>
+              <td>{{orderlist.TotalOrderAmount | number : '1.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab-Ordrer">
+      <div class="">
+
+        <div *ngIf="message2 !=''" class="alert alert-info">{{message2}}</div>
+        <div style="text-align: right"><button class="btn btn-primary"
+            (click)="sendAllOrderSendToConfirm()">Bekreft</button></div>
+        <table id="myTable" class="table">
+          <thead>
+            <tr>
+              <th><input type="checkbox" (change)="selectAllTab2()" [(ngModel)]="isSelectedAllTab2" /></th>
+              <th>Ordre ID <input type="text" id="myInput" class="filter" onkeyup="myFunctionOrderList()" size="4"
+                  placeholder="Filter" title="Skriv inn et navn"></th>
+              <th>Booking ID</th>
+              <th>Bygning</th>
+              <th>Rom</th>
+              <th>Antall</th>
+              <th>Dato</th>
+              <th>Tekst</th>
+              <th>Beløp</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr
+              *ngFor="let orderlist of OrdersListDisplay | searchfilter : BuildingID: ServiceType : ServiceID : Customer : UserID : filterTime.fromDate : filterTime.toDate">
+              <td><input id="myCheck" type="checkbox" [(ngModel)]="selectedOrderTab2[orderlist.OrderID]" /></td>
+
+              <td><a href="javascript:void;"
+                  (click)="OpenOrderline(orderlist.BookingID,orderlist.OrderID,false)">{{orderlist.OrderID}}</a></td>
+              <td><a href="javascript:void;"
+                  (click)="openbooking(orderlist.BookingID,false)">{{orderlist.BookingID}}</a></td>
+              <td>{{orderlist.BuildingName}}</td>
+              <td>{{orderlist.MeetingroomName}}</td>
+              <td>{{orderlist.NoOfPerson}}</td>
+              <td>{{ orderlist.FromDate  | date : 'dd.MM.yyyy' }}</td>
+              <td>{{orderlist.Title}}</td>
+              <td>{{orderlist.TotalOrderAmount | number : '1.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab-Bekreftet">
+      <div class="">
+
+        <div *ngIf="message3 !=''" class="alert alert-info">{{message3}}</div>
+        <div style="text-align: right"><button class="btn btn-primary" (click)="sendAll()">Overfør Visma Global</button>
+        </div>
+        <table id="myTable" class="table">
+          <thead>
+            <tr>
+              <th><input type="checkbox" (change)="selectAll()" [(ngModel)]="isSelectedAll" /></th>
+              <th>Ordre ID <input type="text" id="myInput" class="filter" onkeyup="myFunctionOrderList()" size="4"
+                  placeholder="Filter" title="Skriv inn et navn"></th>
+              <th>Booking ID</th>
+              <th>Bygning</th>
+              <th>Rom</th>
+              <th>Antall</th>
+              <th>Dato</th>
+              <th>Tekst</th>
+              <th>Beløp</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr
+              *ngFor="let orderlist of ConfirmedListDisplay | searchfilter : BuildingID: ServiceType : ServiceID : Customer : UserID : filterTime.fromDate : filterTime.toDate">
+              <td><input id="myCheck" type="checkbox" [(ngModel)]="selectedOrder[orderlist.OrderID]" /></td>
+              <td><a href="javascript:void;"
+                  (click)="OpenOrderline(orderlist.BookingID,orderlist.OrderID,true)">{{orderlist.OrderID}}</a><span
+                  *ngIf="orderlist.VMOrderFailedErrorMessage.length > 0">
+                  <abbr title="{{orderlist.VMOrderFailedErrorMessage}}">&#9940;</abbr>
+                </span></td>
+
+
+              <td><a href="javascript:void;" (click)="openbooking(orderlist.BookingID,true)">{{orderlist.BookingID}}</a>
+              </td>
+              <td>{{orderlist.BuildingName}}</td>
+              <td>{{orderlist.MeetingroomName}}</td>
+              <td>{{orderlist.NoOfPerson}}</td>
+              <td>{{ orderlist.FromDate  | date : 'dd.MM.yyyy' }}</td>
+              <td>{{orderlist.Title}}</td>
+              <td>{{orderlist.TotalOrderAmount | number : '1.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-Overfort">
+      <div class="">
+
+        <table id="myTable" class="table">
+          <thead>
+            <tr>
+              <th>Ordrenr <input type="text" id="myInput" class="filter" onkeyup="myFunctionOrderList()" size="4"
+                  placeholder="Filter" title="Skriv inn et navn"></th>
+              <th>Ordre ID</th>
+              <th>Booking ID</th>
+              <th>Bygning</th>
+              <th>Rom</th>
+              <th>Antall</th>
+              <th>Dato</th>
+              <th>Tekst</th>
+              <th>Beløp</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr
+              *ngFor="let orderlist of TransferedListDisplay| searchfilter : BuildingID: ServiceType : ServiceID : Customer : UserID : filterTime.fromDate : filterTime.toDate">
+              <td>{{orderlist.VGOrderNo}}</td>
+              <td><a href="javascript:void;"
+                  (click)="OpenOrderline(orderlist.BookingID,orderlist.OrderID,true)">{{orderlist.OrderID}}</a></td>
+              <td><a href="javascript:void;" (click)="openbooking(orderlist.BookingID,true)">{{orderlist.BookingID}}</a>
+              </td>
+              <td>{{orderlist.BuildingName}}</td>
+              <td>{{orderlist.MeetingroomName}}</td>
+              <td>{{orderlist.NoOfPerson}}</td>
+              <td>{{ orderlist.FromDate  | date : 'dd.MM.yyyy' }}</td>
+              <td>{{orderlist.Title}}</td>
+              <td>{{orderlist.TotalOrderAmount | number : '1.2-2'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <app-booking-service [isOpen]="serviceopen" (closed)="this.serviceopen=false" [parameters]="serviceData"
+    (deleted)="deleteService($event)" (saved)="SavedService($event)"></app-booking-service>
+  <app-booking-dialog [isOpen]="bookingopen" (closed)="this.bookingopen=false" [parameters]="eventData"
+    (deleted)="deleteBooking($event)" (saved)="SavedOrderLine($event)"></app-booking-dialog>
+  <app-order [isOpen]="orderOpen" (closed)="this.orderOpen=false" [parameters]="orderData"
+    (saved)="SavedOrdersLine($event)"> </app-order>
+</body>
+
+</html>
+
+
+<div class="modal customModal bookModal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog bookmodel-lg modal-lg" role="document">
+    <div class="modal-content">
+      <!-- <form class="" novalidate (ngSubmit)="save()" > -->
+      <div class="modal-header">
+        <label class="priceHeader">
+
+          <button type="button" class="close" aria-label="Close" (click)="close()"><span
+              aria-hidden="true">&times;</span></button>
+        </label>
+        <h3 class="modal-title">Create Order</h3>
+        <label *ngIf="displayWarning" class="msgWarning" [ngStyle]="{'color':colorwaring}">{{ displayWarning}}</label>
+
+
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <fieldset>
+            <legend>Agreement:</legend>
+            <div class="col-md-4">
+              <label class="">
+
+                <input id="agreementIncludeId" [(ngModel)]="isIncludeAgreement" type="checkbox">
+                Include Agreements
+              </label>
+            </div>
+            <div *ngIf='isIncludeAgreement' class="col-md-3">
+              <label class="" for="ToDate">To Date:</label>
+              <input required id="ToDate" autocomplete="off" [(ngModel)]="ToDate" #toDate="ngModel" class="form-control"
+                placeholder="Select date" ng2-datetime-picker date-only="true" [close-on-select]="true" [min-hour]="7"
+                [max-hour]="23" [minute-step]="15" date-format="DD.MM.YYYY" />
+              <div *ngIf=" isIncludeAgreement && toDate.invalid && (toDate.dirty || toDate.touched)"
+                class="alert alert-danger">
+
+                <div *ngIf=" isIncludeAgreement && toDate.errors.required">
+                  toDate is required.
+                </div>
+              </div>
+            </div>
+            <div *ngIf='isIncludeAgreement' class="col-md-3">
+              <label class="" for="agText">Text:</label>
+              <input type="text" class="form-control" id="agText" [(ngModel)]="agreementText" required #aText="ngModel">
+              <div *ngIf=" isIncludeAgreement && aText.invalid && (aText.dirty || aText.touched)"
+                class="alert alert-danger">
+
+                <div *ngIf="isIncludeAgreement && aText.errors.required">
+                  Text is required.
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="row">
+          <fieldset>
+            <legend>Fakturajournal :</legend>
+            <div class="col-md-4">
+              <label class="" for="iFile">File:</label>
+              <input type="file" id="iFile" [(ngModel)]="invoFile" (change)="handleFileInput($event.target.files)" />
+              <span *ngIf='invoFile'><i class="fa fa-times" (click)="clearFile()" aria-hidden="true"></i></span>
+            </div>
+
+            <div *ngIf='invoFile' class="col-md-3">
+              <label class="" for="ToFileDate">To Date:</label>
+              <input required id="ToFileDate" autocomplete="off" [(ngModel)]="ToFileDate" class="form-control"
+                placeholder="Select date" ng2-datetime-picker date-only="true" [close-on-select]="true" [min-hour]="7"
+                [max-hour]="23" [minute-step]="15" date-format="DD.MM.YYYY" #toFDate="ngModel" />
+              <div *ngIf=" invoFile && toFDate.invalid && (toFDate.dirty || toFDate.touched)"
+                class="alert alert-danger">
+
+                <div *ngIf=" invoFile && toFDate.errors.required">
+                  toDate is required.
+                </div>
+              </div>
+            </div>
+            <div *ngIf='invoFile' class="col-md-3">
+              <label class="" for="fileText">Text:</label>
+              <input type="text" required class="form-control" id="fileText" [(ngModel)]="fileText" #Ftext="ngModel">
+              <div *ngIf=" invoFile && Ftext.invalid && (Ftext.dirty || Ftext.touched)" class="alert alert-danger">
+
+                <div *ngIf=" invoFile && Ftext.errors.required">
+                  Text is required.
+                </div>
+              </div>
+            </div>
+            <div *ngIf='invoFile' class="col-md-1">
+              <button [disabled]="isvalidExecute" class="btn orgbtn btn-primary" (click)="fileValidation()"
+                type="button">validate</button>
+            </div>
+            <div *ngIf="sucessvalidateMsg">
+              {{sucessvalidateMsg}}
+            </div>
+
+          </fieldset>
+        </div>
+        <div class="row">
+          <fieldset>
+            <legend>Splitt :</legend>
+            <div class="col-md-2">
+              <label class="">
+
+                <input id="splittingIncludeId" [(ngModel)]="isSplitting" type="checkbox">
+                Splitt mÃ¸teromsleie
+              </label>
+            </div>
+            <div *ngIf='isSplitting' style="display: none;" class="col-md-2">
+              <label class="" for="sText">Splitt Percent:</label>
+              <input required type="text" class="form-control" id="sText" [(ngModel)]="splitingText" #Stext="ngModel">
+              <div *ngIf=" isSplitting && Stext.invalid && (Stext.dirty || Stext.touched)" class="alert alert-danger">
+
+                <div *ngIf=" isSplitting && Stext.errors.required">
+                  Percentage is required.
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="row">
+          <fieldset>
+            <legend>ERP Client :</legend>
+            <div class="col-md-4">
+
+              <label for="erpclientid">Client</label>
+              <select class="form-control" id="erpclientid" [(ngModel)]="selectedErpClient">
+                <option value="Braathen Eiendom Flyt Bjørvika TEST">Braathen Eiendom Flyt Bjørvika TEST </option>
+                <option value="BRAATHEN EIENDOM FLYT AS">BRAATHEN EIENDOM FLYT AS</option>
+                <option value="Braathen Eiendom Flyt Bjørvika AS">Braathen Eiendom Flyt Bjørvika AS</option>
+              </select>
+            </div>
+          </fieldset>
+
+        </div>
+        <div class="row">
+          <div class="col-md-offset-11 col-md-1">
+            <button [disabled]="!isExecute" class="btn orgbtn btn-primary" (click)="ExecuteOrder()"
+              type="button">Execute</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-loading [show]="loading" [config]="{
+        backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '25px',
+        primaryColour: '#666666', secondaryColour: '#006ddd', tertiaryColour: '#563d7c' }"></ngx-loading>
+<div class="modal customModal validateModel  bookModal" tabindex="-1" role="dialog"
+  [ngStyle]="{'display':displayvalidatewindow}">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <label class="priceHeader">
+
+          <button type="button" class="close" aria-label="Close" (click)="closeValidateWindow()"><span
+              aria-hidden="true">&times;</span></button>
+        </label>
+        <h3 class="modal-title">{{validateMsg}}</h3>
+
+
+
+      </div>
+      <div class="modal-body">
+        <div class="validTabContent">
+          {{notvalidateCustomer}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

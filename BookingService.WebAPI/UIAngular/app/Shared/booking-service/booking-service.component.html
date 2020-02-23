@@ -1,0 +1,377 @@
+<div class="modal customModal bookModal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog bookmodel-lg modal-lg" role="document">
+    <div class="modal-content">
+      <form class="" novalidate (ngSubmit)="save()" [formGroup]="serviceForm">
+        <div class="modal-header">
+          <label class="priceHeader">
+
+            <button type="button" class="close" aria-label="Close" (click)="close()"><span
+                aria-hidden="true">&times;</span></button>
+          </label>
+          <h3 class="modal-title">{{dialogTitle}}</h3>
+          <label *ngIf="displayWarning" class="msgWarning" [ngStyle]="{'color':colorwaring}">{{ displayWarning}}</label>
+          <label [ngStyle]="{'display': modeConfig.PriceView==false? 'none' : 'block'}" class="isInternalLabel"
+            *ngIf="this.serviceForm.get('CompanyPayer').value">
+
+            <input id="sconfirmId" type="checkbox" formControlName="IsInternal"
+              [disabled]="!this.serviceForm.get('CompanyPayer').value? 'disabled' : null">
+            Primærkunde
+          </label> &nbsp;
+
+          <label [ngStyle]="{'display': modeConfig.PriceView==false? 'none' : block}" class="isInternalLabel"
+            *ngIf="this.serviceForm.get('CompanyPayer').value">
+
+            <input id="smvaIda" type="checkbox" formControlName="IsMVA"
+              [disabled]="!this.serviceForm.get('CompanyPayer').value? 'disabled' : null">
+            MVA Pliktig
+          </label>
+        </div>
+        <div class="modal-body modal-scrolling">
+
+          <!-- <div class="tab-content"> -->
+          <div class="row">
+            <div class="col-md-4 addonselect" [ngClass]="{'has-error': (serviceForm.get('CompanyPayer').touched ||
+            serviceForm.get('CompanyPayer').dirty) &&
+            !serviceForm.get('CompanyPayer').valid }">
+              <label class="" for="kunde">Kunde</label>
+              <div class="input-group">
+                <ng-select [disabled]="modeConfig.ViewMode==true? 'disabled' : null" placeholder="Velg"
+                  [options]="companyList" formControlName="CompanyPayer" select="onCustomerChange()">
+                </ng-select>
+                <span class="input-group-btn">
+                  <button type="button" class="btn btn-lg btn-primary" (click)="OpenCustomerDialog()"><i
+                      class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                </span>
+              </div>
+              <span class="help-block" *ngIf="serviceForm.get('CompanyPayer').touched
+                      &&
+                     serviceForm.get('CompanyPayer').errors">
+                <span *ngIf="!serviceForm.get('CompanyPayer').value">
+                  Vennligst skriv inn Kunde.
+                </span>
+              </span>
+
+            </div>
+            <div class="col-md-4 addonselect">
+              <label class="" for="property">Kontaktperson</label>
+              <div class="input-group">
+                <ng-select
+                  [disabled]="modeConfig.ViewMode==true || !this.serviceForm.get('CompanyPayer').value? 'disabled' : null"
+                  placeholder="Velg" [options]="userList" formControlName="UserID" select="onUserChange()">
+                </ng-select>
+                <span class="input-group-btn">
+                  <button [disabled]="!this.serviceForm.get('CompanyPayer').value? 'disabled' : null" type="button"
+                    class="btn btn-lg btn-primary" (click)="OpenUserDialog()"><i class="fa fa-plus-circle"
+                      aria-hidden="true"></i></button>
+                </span>
+              </div>
+              <span *ngIf="userList.length==1">{{userList[0].label}}</span>
+              <input type="hidden" *ngIf="userList.length==1" formControlName="UserID" value="{{userList[0].value}}" />
+
+            </div>
+
+
+
+            <div class="col-md-4" [ngClass]="{'has-error': (serviceForm.get('BookOrderName').touched ||
+  serviceForm.get('BookOrderName').dirty) &&
+  !serviceForm.get('BookOrderName').valid }">
+              <label class="" for="orderPerson">Bestiller</label>
+
+              <ng-select [disabled]="modeConfig.ViewMode==true? 'disabled' : null" placeholder="Velg"
+                [options]="userOrderList" formControlName="BookOrderName">
+              </ng-select>
+
+              <span class="help-block" *ngIf="serviceForm.get('BookOrderName').touched
+             &&
+            serviceForm.get('BookOrderName').errors">
+                <span *ngIf="!serviceForm.get('BookOrderName').value">
+                  Vennligst skriv inn Bestiller.
+                </span>
+              </span>
+
+
+            </div>
+
+          </div>
+          <!-- </div> -->
+
+          <div class="row">
+            <div class="col-md-12" [ngClass]="{'has-error': (serviceForm.get('nameOfbook').touched ||
+          serviceForm.get('nameOfbook').dirty) &&
+          !serviceForm.get('nameOfbook').valid }">
+              <label class="" for="nameofBooking">Emne</label>
+              <input [attr.disabled]="modeConfig.ViewMode==true? 'disabled' : null" class="form-control"
+                id="snameofBooking" type="text" placeholder="Emne(required)" formControlName="nameOfbook" />
+              <span class="help-block" *ngIf="(serviceForm.get('nameOfbook').touched ||
+                     serviceForm.get('nameOfbook').dirty) &&
+                     serviceForm.get('nameOfbook').errors">
+                <span *ngIf="serviceForm.get('nameOfbook').errors.required">
+                  Please enter Name.
+                </span>
+
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3" [ngClass]="{'has-error': (serviceForm.get('FromDate').touched ||
+            serviceForm.get('FromDate').dirty) &&
+            !serviceForm.get('FromDate').valid }">
+              <label class="" for="fromdateId">Dato</label>
+              <input [attr.disabled]="modeConfig.ViewMode==true? 'disabled' : null" id="sfromdateId" autocomplete="off"
+                class="form-control" formControlName="FromDate" placeholder="Select date" ng2-datetime-picker
+                date-only="true" [close-on-select]="true" [min-hour]="7" [max-hour]="23" [minute-step]="15"
+                date-format="DD.MM.YYYY" />
+              <span class="help-block" *ngIf="(serviceForm.get('FromDate').touched ||
+                serviceForm.get('FromDate').dirty) &&
+                serviceForm.get('FromDate').errors">
+                <span *ngIf="serviceForm.get('FromDate').errors.incorrect">
+                  FromDate not Greter than ToDate
+                </span>
+
+              </span>
+            </div>
+            <div class="col-md-3">
+              <label class="" for="property">Bygning</label>
+
+
+
+              <select [attr.disabled]="modeConfig.ViewMode==true? 'disabled' : null" (change)="onChanges()"
+                class="form-control" id="sproperty" formControlName="PropertyId">
+                <!--<option value="0" disabled selected hidden>Select a Property...</option>-->
+                <option *ngFor="let property of properties" value={{property.MenuId}}>
+                  {{property.MenuName}}
+                </option>
+
+              </select>
+
+            </div>
+            <div class="col-md-3">
+              <label class="" for="propertyService">Tjenestetype</label>
+
+
+
+              <select [attr.disabled]="modeConfig.ViewMode==true? 'disabled' : null" (change)="onServiceChanges()"
+                class="form-control" id="spropertyService" formControlName="PropertyServiceId">
+                <!-- <option value="0" disabled selected hidden>Select a Service...</option> -->
+                <option *ngFor="let service of propertyServices" value={{service.MenuId}}>
+                  {{service.MenuName}}
+                </option>
+
+              </select>
+
+            </div>
+            <input type="hidden" id="sbookedID" formControlName="bookingId" />
+            <input type="hidden" id="sFoodFormsID" formControlName="FoodFormId" />
+
+            <div class="col-md-3">
+              <label class="" for="meetingId">Tjeneste</label>
+
+
+              <select [attr.disabled]="modeConfig.ViewMode==true? 'disabled' : null" (change)="onServicesvalChanges()"
+                class="form-control" id="smeetingId" formControlName="MeetingRoomId">
+                <ng-container *ngIf="subServiceData">
+                  <optgroup *ngFor="let s of subServiceData" label="{{s}}">
+                    <ng-container *ngFor="let meeting of meetingRooms">
+                      <option *ngIf="s===meeting.meta_keywords" value={{meeting.MainID}}>
+                        {{meeting.Headline}}
+                      </option>
+                    </ng-container>
+                  </optgroup>
+                </ng-container>
+                <ng-container *ngIf="!subServiceData">
+                  <option *ngFor="let meeting of meetingRooms" value={{meeting.MainID}}>
+                    {{meeting.Headline}}
+                  </option>
+                </ng-container>
+              </select>
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-2 ">
+              <span>
+                <button *ngIf="modeConfig.ViewMode==false" class="btn btn-primary" type="button"
+                  [disabled]="!Foods.valid" (click)="addFood()">
+                  Legg til
+                </button>
+              </span>
+            </div>
+          </div>
+          <div class="row" style="margin-top:2%;margin-bottom:2%">
+            <div class="col-md-12">
+
+              <table class="table  orderLineTable ">
+                <thead>
+                  <tr>
+                    <th [ngStyle]="{'display': modeConfig.TableIndex==false? 'none' : 'block'}" scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col">Artikkel</th>
+                    <th scope="col">Tekst</th>
+
+                    <th scope="col">Antall</th>
+                    <!-- <th scope="col">CostPrice</th>
+                                <th scope="col">CostTotal</th> -->
+                    <th scope="col">Pris</th>
+                    <th scope="col">Sum</th>
+
+                    <th scope="col">Slett</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container formArrayName="Foods">
+
+                    <tr
+                      [ngStyle]="{'display':((this.serviceForm.get('Foods')).at(i).get('IsKitchenOrder').value==false && modeConfig.BookingMainOrderline==false)||(this.serviceForm.get('Foods')).at(i).get('MainServiceId').value==this.serviceForm.get('MeetingRoomId').value  ? 'none' : block}"
+                      *ngFor="let food of Foods.controls; let i=index" [formGroupName]="i">
+                      <!-- <ng-container *ngIf="(this.serviceForm.get('Foods')).at(i).get('IsKitchenOrder').value==false && isActive==false"> -->
+                      <th [ngStyle]="{'display': modeConfig.TableIndex==false? 'none' : block}" scope="row">{{i}}</th>
+                      <td>
+                        <input type="hidden" formControlName="MainServiceId" id="{{'smainServiceId' + i}}">
+                        <div class="tdleft">
+                          <select
+                            [attr.disabled]="(this.serviceForm.get('Foods')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                            (change)="onAddvalChanges($event,i)" class="form-control orderTypeSelect"
+                            id="{{'sfoodID' + i}}" formControlName="FoodId">
+                            <optgroup *ngFor="let s of additionalService" label="{{s.ServiceName}}">
+
+                              <option *ngFor="let service of s.ServiceList" value={{service.SId}}>
+                                {{service.SName}}
+                              </option>
+
+                            </optgroup>
+
+                          </select>
+                        </div>
+
+                        <!-- <span class="">
+
+                                                        </span> -->
+                        <input type="hidden" formControlName="OrderHeadId" id="{{'soId' + i}}">
+                      </td>
+                      <td><input
+                          [attr.disabled]=" (this.serviceForm.get('Foods')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          type="text" class="form-control" id="{{'sarticleId' + i}}" placeholder=""
+                          formControlName="ArticleId"></td>
+                      <td> <input
+                          [attr.disabled]=" (this.serviceForm.get('Foods')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          type="text" class="form-control" id="{{'stekstId' + i}}" placeholder=""
+                          formControlName="Tekst">
+                      </td>
+
+                      <td> <input type="number"
+                          [attr.disabled]="(this.serviceForm.get('Foods')).at(i).get('MainServiceId').value==this.serviceForm.get('MeetingRoomId').value || (this.serviceForm.get('Foods')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null "
+                          class="form-control" id="{{'sqtyId' + i}}"
+                          [readonly]="(this.serviceForm.get('Foods')).at(i).get('ArticleId').value? false : true "
+                          placeholder="" formControlName="Qty" (input)="OnQtyChange($event,i)">
+                      </td>
+
+                      <td>
+                        <input [ngStyle]="{'display': modeConfig.PriceView==false? 'none' : block}" type="number"
+                          [attr.disabled]=" (this.serviceForm.get('Foods')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          class="form-control right" id="{{'spriceId' + i}}"
+                          [readonly]="(this.serviceForm.get('Foods')).at(i).get('ArticleId').value? false : true"
+                          formControlName="Price" (input)="OnPriceChange($event,i)"
+                          (focusout)="focusOutFunction($event,i)" />
+
+                      </td>
+                      <td>
+                        <input [ngStyle]="{'display': modeConfig.PriceView==false? 'none' : block}" type="number"
+                          [attr.disabled]=" (this.serviceForm.get('Foods')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          class="form-control right sumRight" id="{{'ssumId' + i}}"
+                          [readonly]="(this.serviceForm.get('Foods')).at(i).get('ArticleId').value? false : true"
+                          formControlName="Sum" />
+
+                      </td>
+
+
+                      <td> <button type="button" class="btn btn-info" (click)="deleteFood(i)"
+                          [attr.disabled]="(this.serviceForm.get('Foods')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null "><i
+                            class="fa fa-minus-circle" aria-hidden="true"></i></button></td>
+                      <!-- </ng-container>   -->
+
+                    </tr>
+
+                  </ng-container>
+
+
+
+                </tbody>
+                <tfoot>
+
+                  <tr *ngIf="serviceForm.get('bookingId').value > 0 ?  formArray.length > 0 : formArray.length > 1 ">
+                    <th [ngStyle]="{'display': modeConfig.TableIndex==false? 'none' : block}" scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <!-- <td><h5 class="right"><label>Total CostSum:</label></h5> </td>
+                                    <td > <input [attr.disabled] = "modeConfig.ViewMode==true? 'disabled' : null" type="number" class="form-control" id="sumTotalId" formControlName="CostSumTotal" value="{{ addonCostTotal}}" /></td> -->
+                    <td>
+                      <h5 class="right"><label>Total Sum:</label></h5>
+                    </td>
+                    <td> <input [attr.disabled]="modeConfig.ViewMode==true? 'disabled' : null" type="number"
+                        class="form-control" id="ssumTotalId" formControlName="SumTotal" value="{{ addonTotal}}" />
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 right">
+              <!-- <span>
+                  <label>
+                    <input [attr.disabled]="isEventConfirmed? 'disabled' : null" id="confirmId" type="checkbox" formControlName="IsConfirmed">
+                    Bekreftet
+                  </label>
+                </span> -->
+              &nbsp;
+
+              <div *ngIf="serviceForm.get('bookingId').value>0 && !isEventConfirmed  " class="inline">
+                <button *ngIf="modeConfig.DeleteBooking==true" type="button"
+                  (click)="DeleteBooking(serviceForm.get('bookingId').value)" title="Slett"
+                  class="btn btn-lg btn-danger float-right">Slett</button>
+              </div>
+              &nbsp;
+
+              <span>
+
+                <button *ngIf="modeConfig.ViewMode==false" class="btn btn-lg btn-primary" type="submit"
+                  [disabled]="!serviceForm.valid">
+                  {{buttonTitle}}
+                </button>
+              </span>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div>
+</div>
+<app-service-alert [title]="confirmTitle" [type]="confirmType" [question]="confirmQuestion" [data]="confirmData"
+  [ConfirmButtonText]='ConfirmButton' (notify)="ConfirmCommand($event)">
+</app-service-alert>
+
+
+
+<dm-user [CustomerNo]="this.serviceForm.get('CompanyPayer').value" [isOpen]="userOpen" (closed)="this.userOpen=false"
+  (saved)="SavedUser($event)">
+</dm-user>
+
+<dm-customer [isOpen]="customerOpen" (closed)="this.customerOpen=false" (saved)="SavedCustomer($event)">
+</dm-customer>

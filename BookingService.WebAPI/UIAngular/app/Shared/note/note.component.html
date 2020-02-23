@@ -1,0 +1,59 @@
+<h2>Note</h2>
+<div class="right">
+  <button class="btn btn-lg btn-primary" (click)="sendMessageDialog(null)"><i class="fa fa-comment"></i> Add
+    Note</button>
+</div>
+<div class="modal send-message" tabindex="-1" role="dialog" [ngStyle]="{'display':messageDisplay}">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="onCloseMessage()"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Add Note </h4>
+        </div>
+        <div class="modal-body">
+          <div class="sending {{sending?'':'hide'}}"></div>
+          <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
+          <!-- <div *ngIf="messageType=='email'"> -->
+          <div>
+            <label>Subject:<span class="required" *ngIf="subject.errors&&subject.errors.required">*</span></label>
+            <div>
+              <input class="form-control" [(ngModel)]="messageSubject" name="messageSubject" type="text" required
+                #subject="ngModel" />
+            </div>
+          </div>
+          <div>
+            <label>Message:<span class="required" *ngIf="body.errors&&body.errors.required">*</span></label>
+            <textarea class="form-control" rows="10" name="messageBody" [(ngModel)]="messageBody" required
+              #body="ngModel"></textarea>
+          </div>
+          <div class="block">
+            <button type="submit" class="btn btn-lg btn-primary" (click)="onSendMessage()">Add Note</button>
+            <button class="btn btn-lg" (click)="onCloseMessage()">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<table id="myTable" class="table">
+  <thead>
+    <tr>
+      <th>Note <input type="text" id="myInput" class="filter" onkeyup="myFunctionOrderList()" size="4"
+          placeholder="Filter" title="Skriv inn et navn"></th>
+      <th>Dato</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let list of noteListData">
+
+      <td>{{list.NoteText}}</td>
+      <td>{{list.CreateDate  | date : 'dd.MM.yyyy' }}</td>
+      <a href="javascript:void;" class="fa fa-trash" (click)="DeleteNote(list.Id)" title="Slett"></a>
+      <confirm-alert [title]="'Slett'" [type]="'Slett'" [question]="'Er du sikker på at du vil slette?'"
+        (notify)="ConfirmCommand($event)"></confirm-alert>
+
+    </tr>
+  </tbody>
+</table>

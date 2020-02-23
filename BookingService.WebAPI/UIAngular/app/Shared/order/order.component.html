@@ -1,0 +1,186 @@
+<div class="modal customModal bookModal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+  <div class="modal-dialog order-lg modal-lg" role="document">
+    <div class="modal-content">
+      <form class="" novalidate (ngSubmit)="save()" [formGroup]="orderForm">
+        <div class="modal-header">
+          <label class="priceHeader">
+
+            <button type="button" class="close" aria-label="Close" (click)="close()"><span
+                aria-hidden="true">&times;</span></button>
+          </label>
+          <input type="hidden" formControlName="OrderHeadId" id="oIdval" />
+          <h3 class="modal-title">{{dialogTitle}}</h3>
+          <label *ngIf="displayWarning" class="msgWarning" [ngStyle]="{'color':colorwaring}">{{ displayWarning}}</label>
+
+
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-2 ">
+              <span>
+                <button *ngIf="modeConfig.ViewMode==false" class="btn btn-primary" type="button"
+                  [disabled]="!OrderLines.valid" (click)="addOrderLine()">
+                  Legg til
+                </button>
+              </span>
+            </div>
+          </div>
+          <div class="row bookingTabContent" style="margin-top:2%;margin-bottom:2%">
+            <div class="col-md-12">
+              <table class="table orderLineTable ">
+                <thead>
+                  <tr>
+                    <th [ngStyle]="{'display': modeConfig.TableIndex==false? 'none' : 'block'}" scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col">Artikkel</th>
+                    <th scope="col">Tekst</th>
+                    <th scope="col">Leveres</th>
+                    <th scope="col">Antall</th>
+                    <!-- <th scope="col">CostPrice</th>
+                                  <th scope="col">CostTotal</th> -->
+                    <th scope="col">Pris</th>
+                    <th scope="col">Sum</th>
+                    <th scope="col">CostPris</th>
+                    <th scope="col">CostSum</th>
+                    <th scope="col">Slett</th>
+                  </tr>
+                </thead>
+                <tbody class="">
+                  <ng-container formArrayName="OrderLines">
+                    <tr
+                      [ngStyle]="{'display':(this.orderForm.get('OrderLines')).at(i).get('IsKitchenOrder').value==false && modeConfig.BookingMainOrderline==false? 'none' : block}"
+                      *ngFor="let food of OrderLines.controls; let i=index" [formGroupName]="i">
+                      <!-- <ng-container *ngIf="(this.orderForm.get('OrderLines')).at(i).get('IsKitchenOrder').value==false && isActive==false"> -->
+                      <th [ngStyle]="{'display': modeConfig.TableIndex==false? 'none' : block}" scope="row">{{i+1}}</th>
+                      <td>
+                        <input type="hidden" formControlName="MainServiceId" id="{{'mainServiceId' + i}}">
+                        <!-- <div class="tdleft">
+                          <select
+                            [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                            (change)="onAddvalChanges($event,i)" class="form-control orderTypeSelect"
+                            id="{{'foodID' + i}}" formControlName="FoodId">
+                            <optgroup *ngFor="let s of additionalService" label="{{s.ServiceName}}">
+
+                              <option *ngFor="let service of s.ServiceList" value={{service.SId}}>
+                                {{service.SName}}
+                              </option>
+
+                            </optgroup>
+
+                          </select>
+                        </div> -->
+                        <div class="">
+                          <label class="checkbox-inline"><input class=""
+                              [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                              id="{{'IsKitchen' + i}}" type="checkbox" formControlName="IsKitchenOrder"><i
+                              class="fa fa-cutlery" aria-hidden="true"></i></label>
+                        </div>
+                        <div [ngStyle]="{'display':'none'}" class="tdright">
+                          <label class="checkbox-inline"><input class=""
+                              [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                              id="{{'IsVat' + i}}" type="checkbox" formControlName="IsVatApply"><i class="fa fa-percent"
+                              aria-hidden="true"></i></label>
+                        </div>
+                        <!-- <span class="">
+
+                                                          </span> -->
+
+                        <input type="hidden" formControlName="OrderHeadId" id="{{'oId' + i}}">
+                      </td>
+                      <td><input
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          type="text" class="form-control" id="{{'articleId' + i}}" placeholder=""
+                          formControlName="ArticleId"></td>
+                      <td> <input
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          type="text" class="form-control" id="{{'tekstId' + i}}" placeholder=""
+                          formControlName="Tekst">
+                      </td>
+                      <td>
+                        <input
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          type="text" class="form-control " id="{{'timeId' + i}}" formControlName="Time" />
+                      </td>
+                      <td> <input type="number"
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null "
+                          class="form-control" id="{{'qtyId' + i}}"
+                          [readonly]="(this.orderForm.get('OrderLines')).at(i).get('ArticleId').value? false : true "
+                          placeholder="" formControlName="Qty" (input)="OnPriceQtyChange()">
+                      </td>
+
+                      <td>
+                        <input [ngStyle]="{'display': modeConfig.PriceView==false? 'none' : block}" type="number"
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          class="form-control right" id="{{'priceId' + i}}"
+                          [readonly]="(this.orderForm.get('OrderLines')).at(i).get('ArticleId').value? false : true"
+                          formControlName="Price" (input)="OnPriceQtyChange()"
+                          (focusout)="focusOutFunction($event,i)" />
+
+                      </td>
+                      <td>
+                        <input [ngStyle]="{'display': modeConfig.PriceView==false? 'none' : block}" type="number"
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          class="form-control right sumRight" id="{{'sumId' + i}}"
+                          [readonly]="(this.orderForm.get('OrderLines')).at(i).get('ArticleId').value? false : true"
+                          formControlName="Sum" />
+
+                      </td>
+                      <td> <input type="number"
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          class="form-control right " id="{{'sumId' + i}}"
+                          [readonly]="(this.orderForm.get('OrderLines')).at(i).get('ArticleId').value? false : true"
+                          formControlName="CostPrice" (focusout)="focusCostPriceFunction($event,i)" /></td>
+                      <td>
+                        <input type="number"
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null"
+                          class="form-control right sumRight" id="{{'sumId' + i}}"
+                          [readonly]="(this.orderForm.get('OrderLines')).at(i).get('ArticleId').value? false : true"
+                          formControlName="CostTotal" />
+                      </td>
+
+                      <td> <button type="button" class="btn btn-info" (click)="deleteFood(i)"
+                          [attr.disabled]=" (this.orderForm.get('OrderLines')).at(i).get('OrderHeadId').value !=0 ? 'disabled' : null "><i
+                            class="fa fa-minus-circle" aria-hidden="true"></i></button></td>
+                      <!-- </ng-container>   -->
+
+                    </tr>
+
+                  </ng-container>
+
+
+
+                </tbody>
+                <tfoot>
+                  <tr *ngIf="modeConfig.TotalSum==true">
+                    <th [ngStyle]="{'display': modeConfig.TableIndex==false? 'none' : block}" scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <!-- <td><h5 class="right"><label>Total CostSum:</label></h5> </td>
+                                      <td > <input [attr.disabled] = "modeConfig.ViewMode==true? 'disabled' : null" type="number" class="form-control" id="sumTotalId" formControlName="CostSumTotal" value="{{ addonCostTotal}}" /></td> -->
+                    <td>
+                      <h5 class="right"><label>Total Sum:</label></h5>
+                    </td>
+                    <td> <input [attr.disabled]="modeConfig.ViewMode==true? 'disabled' : null" type="number"
+                        class="form-control" id="sumTotalId" formControlName="SumTotal" value="{{ addonTotal}}" /></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12 right">
+              <button *ngIf="modeConfig.ViewMode==false" class="btn btn-lg btn-primary" type="submit"
+                [disabled]="!orderForm.valid ">
+                {{buttonTitle}}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

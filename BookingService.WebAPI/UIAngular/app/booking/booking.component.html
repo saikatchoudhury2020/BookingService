@@ -1,0 +1,91 @@
+<div class=" {{ theme }}">
+  <div class="container {{ loaded ? '' : 'loading' }}">
+    <div class="notification">
+      <div class="followup-events" *ngIf="followupEvents.length > 0">
+        <div *ngFor="let event of followupEvents">
+          [{{ datetimeFormat(event.start) }}] {{ event.nameOfbook }},
+          {{ event.Service }} {{ event.buildingName }}
+        </div>
+      </div>
+    </div>
+
+    <div class="toolbar row">
+      <div class="col-md-4">
+        <button type="button" class="btn btn-lg btn-primary" (click)="openBooking(0)">
+          Legg til
+        </button> &nbsp;
+        <button type="button" class="btn btn-lg btn-primary" (click)="openService(0)">
+          Tjenestekjøp
+        </button>
+        <div class="backdrop" [ngStyle]="{ display: 'none' }"></div>
+      </div>
+      <div *ngIf="showloader" class="col-md-8">
+        <label class="msgToolbar" [ngStyle]="{ color: color }">{{
+          displayMessage
+        }}</label>
+      </div>
+    </div>
+    <div class="filterbar row" [ngStyle]="{ display: filterbarDisplay }">
+      <div class="col col-md-12 oneline">
+        Bygning
+        <select class="form-control" (change)="filterList()" id="propertyFilter" [(ngModel)]="selectedBuilding">
+          <option value="0">Alle</option>
+          <option *ngFor="let property of properties" value="{{ property.MenuId }}">
+            {{ property.MenuName }}
+          </option>
+        </select>
+
+        Tjenester
+        <select class="form-control" (change)="filterList()" [(ngModel)]="selectedService">
+          <option value="0">Alle</option>
+          <option *ngFor="let key of Object.keys(servicetypeList)" value="{{ key }}">
+            {{ servicetypeList[key] }}
+          </option>
+        </select>
+
+        &nbsp;<button class="btn-link" (click)="saveFilter()">
+          Lagre filteret
+        </button>
+
+        Fra:
+        <div class="inline">
+          <input type="text" class="calendar from form-control" (ngModelChange)="filterTime.toDate = $event"
+            placeholder="Velg" [(ngModel)]="filterTime.fromDate" ng2-datetime-picker date-only="true"
+            [close-on-select]="true" date-format="DD.MM.YYYY" value="" />
+        </div>
+        <div class="inline time">
+          <ng-select *ngIf="timerList.length > 1" placeholder="" [options]="timerList"
+            [(ngModel)]="filterTime.fromTime">
+          </ng-select>
+        </div>
+
+        Til:
+        <div class="inline">
+          <input type="text" class="calendar to form-control" todayHighlight="true" placeholder="Velg"
+            [(ngModel)]="filterTime.toDate" ng2-datetime-picker date-only="true" [close-on-select]="true"
+            date-format="DD.MM.YYYY" value="" />
+        </div>
+
+        <div class="inline time">
+          <ng-select *ngIf="timerList.length > 1" placeholder="" [options]="timerList" [(ngModel)]="filterTime.toTime">
+          </ng-select>
+        </div>
+        &nbsp;
+        <button class="btn btn-primary" (click)="filterByDate()" id="filterButton">
+          Vis booking
+        </button>
+        &nbsp;
+        <!--
+		<button class="btn btn-lg" (click)="clearFilterByDate();">Rydde opp</button> -->
+      </div>
+    </div>
+
+    <app-booking-dialog [isOpen]="bookingopen" (closed)="this.bookingopen = false" [parameters]="eventData"
+      (deleted)="deleteBooking($event)" (saved)="SavedBooking($event)"></app-booking-dialog>
+
+    <app-booking-service [isOpen]="serviceOpen" (closed)="this.serviceOpen = false" [parameters]="eventData"
+      (deleted)="deleteService($event)" (saved)="SavedService($event)"></app-booking-service>
+
+    <div id="calendar"></div>
+  </div>
+</div>

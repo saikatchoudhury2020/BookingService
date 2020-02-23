@@ -1,0 +1,19 @@
+<table id="myTable" class="table">
+  <thead>
+      <tr>
+
+          <th><input type="checkbox" /></th>
+          <th>Navn</th>          
+      </tr>
+  </thead>
+  <tbody>
+
+      <tr *ngFor="let organization of organizationListData">
+
+          <td><input id="myCheck" type="checkbox" /></td>
+         
+          <td><a [routerLink]="['/crm/organization', organization.id]">{{organization.name}}</a></td>
+      </tr>
+
+  </tbody>
+</table>

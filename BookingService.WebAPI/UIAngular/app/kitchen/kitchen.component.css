@@ -1,0 +1,99 @@
+.action{
+	width: 120px;
+	font-size: 18px;
+}
+
+.inline{
+	display: inline-block;
+}
+
+.right{
+	text-align: right;
+	margin-right: 10px;
+}
+
+.inline.date {
+	width: 100px;
+}
+.btn
+{
+	margin-left: 3px;
+}
+
+.notification{
+	position: relative;
+}
+	
+
+.notification .total-count{
+	color: #ffffff;
+    background-color: #ff0000;
+    border: 1px solid #e9e9e9;
+    border-radius: 14px;
+    display: inline-block;
+    padding: 0px 6px;
+    font-family: Arial;
+}
+
+.notification .total-count:hover{
+	text-decoration:none;
+}
+
+.notification-text{
+	cursor:pointer;
+}
+
+.notification-text::after {
+    content: '\f078';
+    font-family: fontawesome;
+	font-size: 90%;
+	margin-left: 2px;
+}
+
+.notification .message-list{
+	box-shadow: 2px 1px 4px #cccccc;
+	padding: 5px;
+	position: absolute;
+	right: 0px;
+    width: 120px;
+    background: #ffffff;
+}
+
+.notification ul{
+	padding-left: 0px;
+}
+
+.notification li{
+	display: block;
+	cursor: pointer;
+	padding: 5px;
+	background-color: #ffffff;
+    color: #000000;
+		text-align: center;
+}
+
+.notification li:hover{
+    background-color: #238efc;
+    color: #ffffff;
+}
+
+.messageToolbar {
+    display: inline-block;
+    position: fixed;
+	top: 20px;
+    left: 30%;
+    transition: all 0.5s ease-in-out;
+    z-index: 1031;
+   text-align :center;
+    background-color: #eaffff;   
+    padding: 5px 10px;
+    border: 1px solid #dceaea;
+    border-radius: 4px;
+	font-weight:normal;
+}
+
+a.disabled {
+    color: gray;
+    cursor: not-allowed;
+    text-decoration: underline;
+}

@@ -1,0 +1,81 @@
+
+<div class="building">
+  
+      <h1>{{menuData?menuData[0].MenuName:""}}</h1>
+    
+      <div class="right">
+        <button class="btn btn-lg btn-primary" (click)="openModal()" *ngIf="">
+          <i class="fa fa-file-pdf-o"></i> Laste opp meny
+        </button>
+      </div>
+  
+          <div class="modal upload-menu" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+              <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title">Laste opp meny </h4>
+                      </div>
+                      <div class="modal-body">
+                          <div class="row">
+                              <div class="col">
+                                  <iframe frameborder="0" [src]="sanitizer.bypassSecurityTrustResourceUrl(uploadMenuUrl)"></iframe>
+                              </div>                           
+                          </div>
+  
+  
+  
+                      </div>
+  
+                  </div><!-- /.modal-content -->
+              </div>
+          </div>
+    
+      <div class="block">{{menuData?menuData[0].Children[0].ArticleName:""}}</div>
+  
+      <ul class="nav nav-tabs">
+          <li class="active">
+              <a href="#tab-website" data-toggle="tab">Informasjon</a>
+          </li>
+          <li>
+              <a href="#tab-customers" data-toggle="tab">Leietakere</a>
+          </li>
+          <li>
+              <a href="#tab-users" data-toggle="tab">Bruker</a>
+          </li>       
+      </ul>
+  
+      <div class="tab-content">
+          <div class="tab-pane active" id="tab-website">
+              
+                  <div class="block text-right">
+                      <a href="#tab-language-0" data-toggle="tab">NO</a> |
+                      <a href="#tab-language-1" data-toggle="tab">EN</a>
+                  </div>
+                  <div class="tab-content">
+                      <div *ngFor="let menu of menuData;let i=index" class="tab-pane {{i==0?'active':''}}" id="tab-language-{{i}}">
+                          <div [innerHTML]="menu.Children[0].ArticleBody" class="block article-body">
+                          </div>
+  
+                          <div [innerHTML]="menu.Children[0].ArticleDesc" class="block article-description">
+                          </div>
+                      </div>
+                  </div>
+          </div>
+          <div class="tab-pane" id="tab-customers">
+              <div class="">
+                 <organization-list parentId="4"></organization-list>
+              </div>
+          </div>
+       
+          <div class="tab-pane" id="tab-users">
+              <div class="block">
+                  <user-list [buildingId]="organizationId" ></user-list>
+              </div>
+          </div>
+  
+  
+      </div>
+  
+   
+  </div>

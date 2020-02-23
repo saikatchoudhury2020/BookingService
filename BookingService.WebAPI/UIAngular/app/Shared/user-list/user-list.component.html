@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="right">
+        <button class="btn btn-lg btn-primary" (click)="sendMessageDialog( 'email' )"><i class="fa fa-envelope"></i> Send e-post</button>
+        <button class="btn btn-lg btn-primary" (click)="sendMessageDialog( 'sms' )"><i class="fa fa-comment"></i> Send SMS</button>
+    </div>
+
+    <div class="modal send-message" tabindex="-1" role="dialog" [ngStyle]="{'display':messageDisplay}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form name="messageForm" class="messageform">
+                    <div class="modal-header">
+                        <button type="button" class="close" aria-label="Close" (click)="onCloseMessage()"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Send {{messageType=='sms'?'SMS':'Email'}} </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="sending {{sending?'':'hide'}}"></div>
+                        <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
+                        <div *ngIf="messageType=='email'">
+                            <label>Subject:<span class="required" *ngIf="subject.errors&&subject.errors.required">*</span></label>
+                            <div>
+                                <input class="form-control" [(ngModel)]="messageSubject" name="messageSubject" type="text" required #subject="ngModel" />                                
+                            </div>
+                        </div>
+                        <div>
+                            <label>Message:<span class="required" *ngIf="body.errors&&body.errors.required">*</span></label>
+                            <textarea class="form-control" rows="10" name="messageBody" [(ngModel)]="messageBody" required #body="ngModel"></textarea>                            
+                        </div>
+                        <div>
+                            <label>Send to: </label>
+                            <div *ngIf="selectedUsersInfo" class="sendmessage-user-list">
+                                <div *ngFor="let selectedUser of selectedUsersInfo">
+                                    <div *ngIf="messageType=='sms'&&selectedUser.telephone||messageType=='email'&&selectedUser.UserEmail">{{selectedUser.name}}: {{messageType=='sms'?selectedUser.telephone:selectedUser.UserEmail}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block">
+                            <button type="submit" class="btn btn-lg btn-primary" disabled="{{messageBody==''||(messageType=='email'&&messageSubject=='')?'disabled':''}}" (click)="onSendMessage()">Send</button>
+                            <button class="btn btn-lg" (click)="onCloseMessage()">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <table id="myTable" class="table">
+        <thead>
+            <tr>
+
+                <th><input type="checkbox" (change)="selectAll()" [(ngModel)]="isSelectedAll" /></th>
+                <th>Navn  <input class="filter" type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter" title="Skriv inn et navn"></th>
+
+                <th class="mail-column">E-post</th>
+                <th>Mobil</th>
+				<th *ngIf="orgId==0">Firm</th>
+                <th>Avdeling</th>
+                <th>Brukerlister</th>
+                <th>Handling</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="userListData?.length > 0">
+
+            <tr *ngFor="let person of userListData">
+
+                <td><input id="myCheck" type="checkbox" [(ngModel)]="selectedUsers[person.id]" /></td>
+                <td><a [routerLink]="['/crm/user', person.id]">{{person.name}}</a></td>
+                <td class="mail-column"><a href="mailto:{{person.UserEmail}}">{{person.UserEmail}}</a></td>
+                <td>{{person.telephone}}</td>
+				<td *ngIf="orgId==0">{{person.OrganizationName}}</td>		
+                <td>{{person.Department}}</td>
+                <td>{{person.UserGroup}}</td>
+                <td> <a class="fa fa-users" href="javascript:void();" (click)="openModal(person.id)" title="User groups"></a></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <div class="modal bookModal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+
+
+                    <h4 class="modal-title">Brukergruppe</h4>
+
+
+                </div>
+                <div class="modal-body">
+                       <user-group [orgId]="selectedOrg" [userId]="selectedUserId" (notify)="refresh($event)"></user-group>
+
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div>
+    </div>
+</body>
+</html>

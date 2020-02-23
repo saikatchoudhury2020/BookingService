@@ -1,0 +1,15 @@
+
+<div class="autocomplete" [formGroup]="parentForm"  >
+  
+      <input [attr.disabled] = "disabled" id="myInput" type="text" name="customer" (input)="onCustomerChange($event.target.value)"  [formControlName]="control" [placeholder]="placeholder">
+      <span  [class.disabled] = "disabled" (click)="ClearSearch()" class="ng-clear-wrapper" title="Clear all">
+        <span  [ngStyle]="{'display':display}" aria-hidden="true" class="ng-clear">×</span></span>
+   <div  *ngIf="data.length>0;else other_content"> 
+    
+	<div  #scrollMe  id="myInputautocomplete-list" class="autocomplete-items" (scroll)="scrollHandler($event)" >
+  <div *ngFor="let item of data  " (click)="GetDetail(item)">{{item[label]}}<input type="hidden"  [value]='item[value]'></div>
+ 
+  </div>
+</div>
+<ng-template #other_content></ng-template>
+  </div>

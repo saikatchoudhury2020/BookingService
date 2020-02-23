@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="">
+        <h1 class="">{{serviceForm?.name}}</h1>
+
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#1" data-toggle="tab">Informasjon</a>
+            </li>
+            <li>
+                <a href="#2" data-toggle="tab">Bookings</a>
+            </li>
+
+        </ul>
+
+        <div class="tab-content ">
+            <div class="tab-pane active" id="1">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 ">
+
+
+
+
+
+
+                    <div class="row">
+                        <div *ngIf="serviceForm?.picturePath" class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../{{serviceForm?.PicturePath}}.img" class="img-circle img-responsive"> </div>
+
+
+                        <div class=" col-md-9 col-lg-9 ">
+						<br />
+                            <table class="table listinfo">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            Mobil app:
+                                        </td>
+                                        <td>{{serviceForm?.mobileApp}}</td>
+                                    </tr>
+                                    <!--<tr>
+                                        <td>
+                                            Service type
+                                        </td>
+                                        <td>{{serviceForm?.serviceType}}</td>
+                                    </tr>-->
+                                    <tr>
+                                        <td>
+                                            Leieperiode:
+                                        </td>
+                                        <td>{{serviceForm?.timeSpan}}</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>
+                                            Kun forespørsel:
+                                        </td>
+                                        <td>{{serviceForm?.requestOnly}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Forespørsel E-post:
+                                        </td>
+                                        <td>{{serviceForm?.reciever}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tilleggsvalg:</td>
+                                        <td>{{serviceForm?.additionalOption}}</td>
+                                    </tr>
+                                    <tr>
+
+                                        <td>Kapasitet:</td>
+                                        <td>
+                                            {{serviceForm?.capacity}}
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+                                        <td>Klargjøringstid:</td>
+                                        <td>{{serviceForm?.preparationTime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ryddetid:</td>
+                                        <td>{{serviceForm?.cleantime}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Avbestillingsfrist:</td>
+                                        <td>{{serviceForm?.cancellation}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Åpent fra:
+                                        </td>
+                                        <td>{{serviceForm?.from}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Åpent til:
+                                        </td>
+                                        <td>{{serviceForm?.to}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+            <div class="tab-pane" id="2">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User</th>
+                            <th>Booking Name</th>                       
+                            <th>From</th>
+							<th>To</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let bookEvent of serviceForm?.bookedServiceEvents;let i=index">
+                            <td scope="row">{{i+1}}</td>
+                            <td> {{bookEvent.UserName}}</td>
+                            <td>{{bookEvent.title}}</td>                          
+                            <td>{{bookEvent.start|date:"dd.MM.yyyy HH:mm"}}</td>
+							<td>{{bookEvent.end|date:"dd.MM.yyyy HH:mm"}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</body>
+</html>

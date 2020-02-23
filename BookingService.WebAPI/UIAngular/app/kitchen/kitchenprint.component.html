@@ -1,0 +1,104 @@
+<div class="main" *ngIf="booking">
+
+<div class="print-button"><a href="javascript:window.print()"><i class="fa fa-print"></i></a></div>
+
+<table>
+
+	<tr>
+		<td class="title">Booking id:</td>
+		<td>{{booking.id}}</td>
+	</tr>
+	<tr>
+		<td>Booking:</td>
+		<td>{{booking.title}}</td>
+	</tr>
+	<tr>
+		<td>Møterom:</td>
+		<td>{{booking.Service}}</td>
+	</tr>
+  <tr>
+    <td>Dato:</td>
+    <td>{{dateObject(booking.start)|date : 'dd.MM.yyyy HH:mm'}} - {{dateObject(booking.end)|date : 'dd.MM.yyyy HH:mm'}}</td>
+  </tr>
+	<tr>
+		<td>Bestiller:</td>
+		<td>{{booking.UserName}}</td>
+	</tr>
+  <tr>
+    <td>Antall:</td>
+    <td>{{booking.numOfPeople}}</td>
+  </tr>
+  <tr>
+	<td>Pris:</td>
+	<td>{{sum_total}} Kr</td>
+  </tr>
+  <tr>
+	<td colspan="2">
+		<h3>Prisdetaljer</h3>
+		<table>
+			<tr>
+				<td>Article</td>
+				<td>Pris</td>
+			</tr>
+			<tr *ngFor="let item of sum">
+				<td>{{item.articleId}}</td>
+				<td>{{item.price}} Kr({{item.number}})</td>
+			</tr>
+		</table>
+	</td>
+  </tr>
+</table>
+
+<h2>Mat</h2>
+
+<table *ngFor="let food of booking.foods;let i = index">
+	<tbody *ngIf="food.IsKitchenOrder">
+	<tr>
+		<td class="title">
+		Article:
+		</td>
+		<td>
+		{{food.ArticleId}}
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Navn:
+		</td>
+		<td>
+		{{food.Tekst}}
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Antall:
+		</td>
+		<td>
+		{{food.Qty}}
+		</td>
+	</tr>
+	<tr>
+		<td>
+		Enhetspris:
+		</td>
+		<td>
+		{{food.CostPrice}} Kr
+		</td>
+	</tr>
+	<tr>
+		<td>Pris:</td>
+		<td>{{food.CostTotal}} Kr</td>
+	</tr> 
+	<tr>
+		<td>
+		Leveres:
+		</td>
+		<td>
+		{{food.Time}}
+		</td>
+	</tr>
+	<tr><td><br /></td></tr>
+	</tbody>
+</table>
+
+</div>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div class="row">
+
+    <div *ngIf='showloader' class="col-md-8" style="text-align: right;">
+      <label class="msgToolbar" [ngStyle]="{'color':color}">{{ displayMessage}}</label>
+    </div>
+  </div>
+  <h1>{{orgData?.name}} </h1> &nbsp;
+  <div>Org.nummer: {{orgData?.OrganizationNumber}}
+    &nbsp;
+
+    <label>
+
+      <input id="mvaId" name="mvaval" type="checkbox" [(ngModel)]="Code"
+        (change)="onIsMvaChange($event.target.checked,orgData?.id)">
+      Avgifspliktig
+    </label>
+  </div>
+  <span *ngIf="orgData?.PicturePath">
+    <img src="../{{orgData?.PicturePath}}.img" alt="{{orgData?.name}}">
+  </span>
+
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#tab-userlist" data-toggle="tab">User list</a>
+    </li>
+    <li>
+      <a href="#tab-note" data-toggle="tab">Note</a>
+    </li>
+    <li>
+      <a href="#tab-agreements" data-toggle="tab">Avtaler</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab-userlist">
+      <div class="">
+        <user-list [orgId]="orgData?.id"></user-list>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab-note">
+      <div class="">
+        <app-note [orgId]="orgData?.id" [userid]="0"></app-note>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab-agreements">
+      <div class="">
+        <app-agreements [orgId]="orgData.id" [userid]="0"></app-agreements>
+      </div>
+    </div>    
+  </div>
+  <confirm-alert [title]="'Endre'" [type]="'Endre'" [question]="'Skal MVA oppdateres?'" [ConfirmButtonText]="'Endre'"
+    (notify)="ConfirmCommand($event)"></confirm-alert>
+</body>
+
+</html>

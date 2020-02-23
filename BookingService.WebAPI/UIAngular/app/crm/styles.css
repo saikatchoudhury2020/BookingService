@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+
+.right{
+    float:right;
+}
+
+.block{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.crm .nav>li>a{
+	padding: 5px 15px;
+}
+
+.crm .btn{
+	padding: 4px 10px;
+    font-size: 1em;
+	border-radius: 4px;
+}
+
+
+.crm .filter
+{
+	border-width:0px 0px 1px 0px;
+	font-weight: normal;
+}
+
+.crm h1
+{
+	font-size: 2.2em;
+}
+
+.user-picture
+{
+	width: 150px;
+}
+
+.crm .table>tbody>tr>td
+{
+	padding: 5px;
+}
+
+table.listinfo>tbody>tr>td
+{
+	border-top:none;
+}
+
+.listinfo td:first-child
+{
+	width: 200px;
+}
+
+.table-user-information td:first-child
+{
+	width: 100px;
+}
+
+
+/* .upload-menu {
+
+} */
+
+
+.upload-menu iframe {
+	margin-left: 10px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.error{
+    font-size: 90%;
+    color: red;
+}
+
+.required{
+    color:red;
+}
+
+.sending {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    /* background-image: url("images/loading.gif"); */
+    background-size: 50px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.sendmessage-user-list {
+    font-size: 90%;
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.messageform label{
+    font-weight: normal;
+}
+
+
+message-list .nav-tabs > li
+{
+    float:right;
+}

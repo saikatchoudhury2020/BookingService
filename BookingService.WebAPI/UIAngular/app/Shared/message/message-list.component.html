@@ -1,0 +1,98 @@
+<div>
+
+	<div>
+		 <table *ngIf="messageList.length > 0">
+			<tr>
+				<th>Type</th>
+				<th>Sendetid</th>
+				<th>To</th>
+				<th>Innhold</th>
+				<th>Handling</th>
+			</tr>
+			<tr *ngFor="let message of messageList;index as i">
+				<td *ngIf="message.id>=0">{{message.type}}</td>
+				<td *ngIf="message.id>=0">{{message.sendTime}}</td>			
+				<td *ngIf="message.id>=0">{{message.to}}</td>
+				<td *ngIf="message.id>=0">{{message.subject}} / {{message.body|slice:0:5}}..</td>
+				<td *ngIf="message.id>=0">
+					<button type="button" class="btn-link" (click)="delete( i )">Slett</button> &nbsp;
+					<button type="button" class="btn-link" (click)="edit( i )">Redigere</button>
+				</td>
+			</tr>
+		 </table>
+		 
+		 <div class="right-float">
+			<div class="inline">
+				<select class="form-control" [(ngModel)]="selectType">
+					<option value="email">e-post</option>
+					<option value="sms">SMS</option>
+				</select>
+			</div>&nbsp;
+			<button type="button" class="btn btn-primary" (click)="messageForm.type=selectType">Legg til</button>
+		</div>
+	</div>
+
+	<div *ngIf="messageForm.type=='email'||messageForm.type=='sms'">
+		<div>
+		<h3>{{messageForm.type=='email'?'e-post':'SMS'}}</h3>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Mal: </label>
+			</div>
+			<div class="col-md-4">
+				<select class="form-control" (change)="chooseTemplate( $event.target.value );">
+					<option *ngFor="let template of templateList" value="{{template.id}}">
+						{{template.name}}
+					</option>
+				</select>
+			</div>
+				
+			<div class="col-md-4">
+				<div class="inline"><label>Sendetid: </label></div>
+				<div class="inline"><input type="text" class="form-control"
+											autocomplete="off" placeholder="Select date"
+											date-only="true" size="8" date-format="DD.MM.YYYY" [(ngModel)]="messageForm.sendTimeDate"  ng2-datetime-picker />
+				</div>
+				<div class="inline"><input size="1" type="text" class="form-control" [(ngModel)]="messageForm.sendTimeTime" value="00:00" /></div>
+											
+			</div>
+		</div>
+		<div class="row">
+				<div class="col-md-2">
+					<label>Til:</label>
+				</div>
+				<div class="col-md-10">
+					<input [(ngModel)]="messageForm.to" type="text" class="form-control" value="" />
+				</div>
+		</div>
+		
+		<div class="row" *ngIf="messageForm.type=='email'">
+				<div class="col-md-2">
+					<label>Emne:</label>
+				</div>
+				<div class="col-md-10">
+					<input [(ngModel)]="messageForm.subject"  type="text" class="form-control" value="" />
+				</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<label>Innhold:</label>
+			</div>
+			<div class="col-md-10">
+				<div (input)="messageForm.body=$event.srcElement.innerHTML" class="form-control editdiv" contenteditable="true" [innerHTML]="messageForm.currentBody"></div>				
+			</div>
+		</div>
+		<div class="row"  *ngIf="messageForm.type=='email'">
+			<div class="col-md-2">
+				<label>Vedlegg: </label>
+			</div>
+			<div class="col-md-10"><input type="file" /></div>
+		</div>
+		<div class="row">
+			<button class="btn btn-primary" (click)="addMessage()">Legg til</button> &nbsp;
+			<button class="btn btn-warning" (click)="initForm()">Avbryt</button>
+		</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

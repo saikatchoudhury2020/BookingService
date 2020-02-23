@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+<body>
+  <h1>Avtaletyper</h1>
+  <div class="block">
+    <button type="button" class="btn btn-lg btn-primary" (click)="openModal(null)"><i class="fa fa-plus"></i>Legg til nye avtaletyper</button>
+  </div>
+  <div>
+
+  </div>
+  <table id="myTable" class="table">
+    <thead>
+      <tr>
+        <th>Navn</th>
+        <th>Article</th>
+        <th>Text</th>
+        <th align="right">Price</th>
+        <th>NumberOfMonths</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agrType of agreementTypes; ">
+         
+        <td> <a (click)="openModal(agrType)">{{agrType.Name}}</a></td>
+        <td>{{agrType.Article}}</td>
+        <td>{{agrType.Text}}</td>
+        <td align="right">{{agrType.Price | number:'1.2-5'}}</td>
+        <td>{{agrType.NumberOfMonths}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal bookModal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Legg til nye avtaletyper</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <input class="form-control" id="AgreementTypeId" [(ngModel)]="AgreementTypeId" width="30" type="hidden" placeholder="Navn" />
+              
+              Navn:<input class="form-control" id="Name" [(ngModel)]="Name" width="30" type="text" placeholder="Navn" />
+              Artikkel:<input class="form-control" id="Article" [(ngModel)]="Article" width="30" type="text" placeholder="Article" />
+              Tekst:<input class="form-control" id="Text" [(ngModel)]="Text" width="30" type="text" placeholder="Text" />
+              Pris:<input class="form-control" id="Price" [(ngModel)]="Price" width="30" type="text" placeholder="Price" />
+              Antall mnd:<input class="form-control" id="NumberOfMonths" [(ngModel)]="NumberOfMonths" width="30" type="text" placeholder="Number Of Months" />
+
+            </div>
+            <div class="col-md-2 btnsave">
+              <button class="btn  btn-primary" (click)="save()" type="button">Lagre</button>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /.modal-content -->
+    </div>
+  </div>
+</body>
+</html>

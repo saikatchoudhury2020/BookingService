@@ -1,0 +1,12 @@
+/* .serviceBody tbody tr:first-child {
+  display: none !important;
+}
+
+.servicewithBody tbody tr:first-child {
+  display: block !important;
+} */
+.modal-scrolling{
+  HEIGHT: 570PX;
+  OVERFLOW-Y: AUTO;
+  OVERFLOW-X: HIDDEN;
+}

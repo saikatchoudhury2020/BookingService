@@ -1,0 +1,138 @@
+
+
+<!-- <div *ngIf="error==''"> -->
+	<div>
+	<div class="right notification"  (mouseover)="isMessageListShown=true" (mouseout)="isMessageListShown=false">
+		<span class="notification-text"><a class="total-count" href="javascript:;">{{NotificationTotal}}</a></span>
+		<div class="message-list" [ngStyle]="{'display':isMessageListShown?'block':'none'}">
+		<ul>
+			<li *ngFor="let NotificationData of KitchenNotificationData" (click)="FromDate=dateObject(NotificationData.Fromdate, 'YYYY-MM-DD').format( 'DD.MM.YYYY' );changeDate( FromDate )">
+				{{NotificationData.Fromdate| date : 'dd.MM.yyyy'}} - {{NotificationData.NotDeliveredCount+NotificationData.NotClearUpCount}}
+			</li>
+		</ul>
+		</div>
+	</div>
+	<h1>Kjøkken {{buildingName}}</h1>			
+	<h2 style="text-align:center">{{dateObject(FromDate).format( 'dddd DD.MM.YYYY' )}}</h2>
+	<div>			
+		<label class="" for="todateId">Dato: </label> &nbsp;
+		<div class="inline date">
+			<input id="todateId" class="form-control"  placeholder="Velg dato"
+			ng2-datetime-picker date-only="true" [close-on-select]="true"  date-format="DD.MM.YYYY" (ngModelChange)="changeDate($event.toString())" [(ngModel)]="FromDate" name="FromDate" />
+		</div>&nbsp;
+		<button class="btn" (click)="FromDate=dateObject(FromDate).add( -1, 'days' ).format( 'DD.MM.YYYY' );changeDate( FromDate )"><</button>	
+		<button class="btn" (click)="FromDate=dateObject(FromDate).add( 1, 'days' ).format( 'DD.MM.YYYY' );changeDate( FromDate )">></button>
+		<button class="btn btn-primary" (click)="FromDate=today;changeDate( today )">I dag</button>	
+			
+	</div>
+	<div *ngIf='showloader ' class="col-md-8">
+			<label class="messageToolbar" [ngStyle]="{'color':color}">{{ displayMessage}}</label>
+		  </div>
+	<!-- <div *ngIf="showloader && error!=''"><label class="errorToolbar" [ngStyle]="{'color':'red'}">{{ error}}</label></div> -->
+	<h3>Levert</h3> 
+	<table class="table">
+	<tr *ngIf=" orderListData.FoodNotCleanedList && orderListData.FoodNotCleanedList.length == 0">
+		<td>
+			<div class="alert alert-info">
+				Ikke data funnet.
+			</div>
+		</td>
+	</tr>
+	<tr *ngFor="let orderlist of orderListData.FoodNotCleanedList" style="list-style-type:none">
+			<td> 
+			{{ orderlist.Fromdate  | date : 'H:mm ' }} - {{ orderlist.Todate | date : 'H:mm ' }} 
+			</td>
+			<td>
+			{{orderlist.Text}},{{orderlist.NoOFPeople}} personer
+			</td>
+			<td   class="action">
+					<a [class.disabled]="isDisable"  href="javascript:void;" (click)="onClickUpdateClean(orderlist.OrderNo)" title="Rydde">
+							<i class="fa fa-trash"></i>
+						</a>
+						&nbsp;
+				
+				<a href="javascript:void;" (click)="OpenOrderline(orderlist.OrderNo)" title="Edit">
+					<i class="fa fa-edit"></i>
+				</a>
+			&nbsp;
+			
+				<a [routerLink]="['/kitchenprint', orderlist.OrderNo]" target="_blank" title="print">
+					<i class="fa fa-print"></i>
+				</a>
+			</td>
+	</tr>
+	</table>
+
+	
+	<h3>Ikke levert</h3>
+	<table class="table">
+	<tr *ngIf="orderListData.FoodNotDeliveredList && orderListData.FoodNotDeliveredList.length == 0">
+		<td>
+			<div class="alert alert-info">
+				Ikke data funnet.
+			</div>
+		</td>
+	</tr>
+	<ng-container *ngFor="let orderlist of orderListData.FoodNotDeliveredList">
+		<tr>
+		<table  frame="box">
+					<thead>
+							<tr>
+							  <th>Tid</th>
+							  <th>Møte</th>
+							  <th>Leveres</th>
+							 <th>Antall</th>
+							<th>Servering</th>
+							  <th></th>
+							</tr>
+						  </thead>
+						  <tbody>
+							  <tr><td class="booktime" > 
+									{{ orderlist.Fromdate | date : 'H:mm ' }} - {{ orderlist.Todate | date : 'H:mm ' }} 
+									</td>
+									<td class="booktext" >
+									{{orderlist.Text}},{{orderlist.NoOFPeople}} personer
+									</td>
+									<ng-container *ngFor="let foodlist of orderlist.FoodList; let i=index">
+											<ng-container *ngIf="i==0">
+													<td class="small" >{{foodlist.DeliverTime}}</td>
+													<td class="small" >{{foodlist.Quantity}}</td>
+													<td class="foodtext" >{{foodlist.Text}}</td>
+											</ng-container>
+										</ng-container>
+										<td class="action">
+												<a href="javascript:void;" (click)="onClickUpdateDelivered(orderlist.OrderNo)" title="Deliver">
+													<i class="fa fa-check-circle"></i>
+												</a>
+												&nbsp;
+												<a href="javascript:void;" (click)="OpenOrderline(orderlist.OrderNo)" title="Edit">
+														<i class="fa fa-edit"></i>
+													</a>
+												&nbsp;
+												<a [routerLink]="['/kitchenprint', orderlist.OrderNo]" target="_blank" title="print">
+													<i class="fa fa-print"></i>
+												</a>
+												
+											</td>
+								</tr>
+								<tr *ngFor="let foodlist of orderlist.FoodList ; let i=index">
+										<ng-container *ngIf="i!=0">
+									<td></td>
+									<td></td>
+										<td class="small" >{{foodlist.DeliverTime}}</td>
+										<td class="small" >{{foodlist.Quantity}}</td>
+										<td class="foodtext" >{{foodlist.Text}}</td>
+										<td></td>
+									</ng-container>
+									</tr>
+							  </tbody>
+			</table>
+			</tr>
+		</ng-container>
+	
+	
+	</table>
+
+</div>
+
+<app-booking-dialog  [isOpen]="kitchenopen" (closed)="this.kitchenopen=false" [parameters]="eventData" (saved)="SavedKitchen($event)"></app-booking-dialog>

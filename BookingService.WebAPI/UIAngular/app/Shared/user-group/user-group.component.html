@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form novalidate [formGroup]="myForm" (ngSubmit)="assignUserGroup()">
+        <div class="row">
+            <div class="com-md-4">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" [checked]="allUserGroupselected" (click)="toggleSelect($event.target.checked)" />All</th>
+                            <th>UserGroup</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let userGroup of userGroupData ;let i=index">
+                            <td>
+                                <input type="checkbox" [checked]="userGroup.selected" (change)="onChange(userGroup?.userGroupId,i, $event.target.checked)">
+
+                            </td>
+                            <td>
+                                {{userGroup?.name}}
+                            </td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-2 btnsave">
+                <span>
+                    <button class="btn btn-lg btn-primary"
+                            type="submit"
+                            [disabled]="!myForm.valid">
+                        {{buttonTitle}}
+                    </button>
+                </span>
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+.title
+{
+	width: 100px;
+}
+
+.print-button{
+	font-size: 24px;
+	margin-left: 300px;
+}
+
+@media print{
+	.print-button{
+		display:none;
+	}
+	
+	@page { margin: 0.5cm 1cm 0cm 1cm } 
+
+}
+
+
+.main { 
+	margin: 10px 5px;
+	font-family: monospace;
+} 
+
+.main h2{
+	font-size: 1.6em;
+}

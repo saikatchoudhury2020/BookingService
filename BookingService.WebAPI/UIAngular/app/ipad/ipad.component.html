@@ -1,0 +1,68 @@
+<div class="alert-warning" *ngIf="error!=''">{{error}}</div>
+
+<div class="ipad-container" *ngIf="error==''">
+	<div class="main">
+
+		<h1>{{serviceName}}</h1>
+		<h2>{{now.format( 'dddd' )}}</h2>
+		<h2>{{now.format( 'DD.MM.YYYY' )}}</h2>
+		
+	
+		
+		<div class="clock">
+			<iframe frameborder="0" style="width: 320px; height: 320px;" src="https://braatheneiendom.no/digimaker/clock.html"></iframe>
+		</div>
+
+		<div class="booking-status">
+			<div *ngIf="isBooked"><div class="event-status busy">Opptatt</div></div>
+			
+			<div *ngIf="!isBooked&&canBook">
+				<div class="event-status available">Ledig</div>	
+			
+
+				<div class="book">
+					<div *ngIf="!startBook">
+						<button class="btn btn-primary" (click)="startBook=true;"><span class="glyphicon glyphicon-plus"></span> Book</button>	
+					</div>
+					<div *ngIf="startBook">
+						<div class="inline">
+							<select class="form-control" [(ngModel)]="selectedTimeGap">
+								<option value="15">0:15</option>
+								<option value="30">0:30</option>
+								<option value="45">0:45</option>
+								<option value="60">1 timer</option>
+								<option value="90">1:30 timer</option>
+							</select>
+						</div>
+						<div class="inline"> &nbsp;
+							<button class="btn btn-link" (click)="bookNow()"><span class="glyphicon glyphicon-ok"></span> </button>						
+							<button class="btn btn-link" (click)="startBook=false;"><span class="glyphicon glyphicon-remove"></span> </button>		
+							<div *ngIf="bookingErrorMessage!=''" class="alert-warning">{{bookingErrorMessage}}</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>											
+		</div>
+
+		<div class="event-list">
+			<table>			
+				<tbody *ngFor="let event of events;let i = index;" class="event-item {{isInMeeting( event.start, event.end )?'inmeeting':''}}">					
+					<tr class="nextdates" *ngIf="laterThanNow( event.end ) && datetimeFormat( event.start, 'DD.MM.YYYY' ) != now.format( 'DD.MM.YYYY' ) && (datetimeFormat( events[i==0?0:i-1].start, 'DD.MM.YYYY' ) != datetimeFormat( event.start, 'DD.MM.YYYY' ) || (i==0 && datetimeFormat( event.start, 'DD.MM.YYYY' ) != now.format( 'DD.MM.YYYY' ) ) )">
+						<td colspan="2">{{datetimeFormat( event.start, 'dddd DD.MM.YYYY' )}}</td>
+					</tr>					
+					<tr *ngIf="laterThanNow( event.end )">				
+						<td>
+							{{datetimeFormat( event.start )}} - {{datetimeFormat( event.end )}}
+						</td>				
+						<td>
+							 {{event.title}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="description" *ngIf="description !=''"  [innerHTML]="description"></div>
+	</div>
+</div>

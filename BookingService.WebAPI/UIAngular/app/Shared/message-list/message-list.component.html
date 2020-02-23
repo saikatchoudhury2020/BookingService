@@ -1,0 +1,79 @@
+
+
+<ul class="nav nav-tabs">
+  <li class="active">
+      <a href="#tab-email" data-toggle="tab">Email</a>
+  </li>
+  <li>
+      <a href="#tab-sms" data-toggle="tab">SMS</a>
+  </li>
+
+</ul>
+
+
+<div class="tab-content">
+  <div class="tab-pane active" id="tab-email">
+      <div *ngIf="dataEmail&&dataEmail.totalCount>0">
+          <div class="text-right block" *ngIf="pageCount">
+              <span><a title="previous page" role="button" class="btn btn-default" (click)="prev(1)">&lt;</a></span>
+              <span><a title="next page"  role="button"  class="btn btn-default" (click)="next(1)">&gt;</a></span>
+              <span>{{ceil(currentOffset[0]/pageCount)+1}}/{{ceil(totalCount[0]/pageCount)}}</span>
+          </div>
+          <table *ngIf="dataEmail" class="table">
+              <tr>
+                  <th>Time</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Subject</th>
+                  <th>Message</th>
+                  <th>Status</th>
+                  <th>Log</th>
+              </tr>
+              <tbody>
+                  <tr *ngFor="let message of dataEmail.list">
+                      <td>{{message.created|date:"dd.MM.yyyy HH:mm"}}</td>
+                      <td>{{message.from}}</td>
+                      <td>{{message.to}}</td>
+                      <td>{{message.title}}</td>
+                      <td>{{message.body.substring( 0, 55 )}}</td>
+                      <td>{{message.status}}</td>
+                      <td>{{message.log}}</td>
+
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      <div *ngIf="dataEmail&&dataEmail.totalCount==0" class="notice block">No record.</div>
+
+  </div>
+
+  <div class="tab-pane" id="tab-sms">
+      <div *ngIf="dataSMS&&dataSMS.totalCount>0">
+          <div class="text-right block" *ngIf="pageCount">
+              <span><a title="previous page" href="javascript:void()" (click)="prev(1)">&lt;</a></span>
+              <span><a title="next page" href="javascript:void()" (click)="next(1)">&gt;</a></span>
+              <span>{{ceil(currentOffset[1]/pageCount)+1}}/{{ceil(totalCount[1]/pageCount)}}</span>
+          </div>
+          <table class="table">
+              <tr>
+                  <th>Time</th>
+                  <th>To</th>
+                  <th>Message</th>
+                  <th>Status</th>
+                  <th>Log</th>
+              </tr>
+              <tbody>
+                  <tr *ngFor="let message of dataSMS.list">
+                      <td>{{message.created}}</td>
+                      <td>{{message.to}}</td>
+                      <td>{{message.body.substring( 0, 55 )}}</td>
+                      <td>{{message.status}}</td>
+                      <td>{{message.log}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+      
+      <div *ngIf="dataSMS&&dataSMS.totalCount==0" class="notice block">No record.</div>
+  </div>
+</div>

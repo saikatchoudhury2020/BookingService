@@ -1,0 +1,34 @@
+/* .addonselect > ng-select{
+    width:93% !important ;
+
+} */
+
+.custmodel-lg{
+    width:45% !important ;
+}
+.usermodel-lg{
+    width:30% !important;
+}
+
+.customModal{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.headerrow{
+    margin-bottom: 42px;
+}
+
+.isInternalLabel{
+    font-weight: 400 !important;
+}
+
+.bookingTabContent{
+    HEIGHT: 570PX;
+    OVERFLOW-Y: AUTO;
+    OVERFLOW-X: HIDDEN;
+}
+
+.modal-scrolling{
+    HEIGHT: 570PX;
+    OVERFLOW-Y: AUTO;
+    OVERFLOW-X: HIDDEN;
+}

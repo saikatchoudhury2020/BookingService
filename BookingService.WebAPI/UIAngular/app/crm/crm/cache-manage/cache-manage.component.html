@@ -1,0 +1,7 @@
+<div class="row">
+    <div *ngIf='showloader' class="col-md-8">
+        <label class="msgToolbar" [ngStyle]="{'color':color}">{{ displayMessage}}</label>
+      </div>
+</div>
+
+<app-cache (notify)="ConfirmCommand($event)"></app-cache>

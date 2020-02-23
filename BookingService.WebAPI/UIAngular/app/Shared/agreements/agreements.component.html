@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div class="block">
+    <button type="button" class="btn btn-lg btn-primary" (click)="openModal(null)"><i class="fa fa-plus"></i>Legg til
+      nye avtaler</button>
+  </div>
+  <div>
+
+  </div>
+  <table id="myTable" class="table">
+    <thead>
+      <tr>
+        <th>Navn</th>
+        <th>Contact</th>
+        <th>FromDate</th>
+        <th>ToDate</th>
+        <th>Article</th>
+        <th>Text</th>
+        <th align="right">Price</th>
+        <th>NumberOfMonths</th>
+        <th>Invoiced To Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agrType of agreements; ">
+
+        <td> <a (click)="openModal(agrType)">{{agrType.AgreementTypeName}}</a></td>
+        <td>{{agrType.ContactName}}</td>
+        <td>{{agrType.FromDate | date : 'dd.MM.yyyy'}}</td>
+        <td>{{agrType.ToDate | date : 'dd.MM.yyyy'}}</td>
+        <td>{{agrType.Article}}</td>
+        <td>{{agrType.Text}}</td>
+        <td align="right">{{agrType.Price | number:'1.2-5'}}</td>
+        <td>{{agrType.NumberOfMonths}}</td>
+        <td>{{agrType.InvoicedToDate| date : 'dd.MM.yyyy'}}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal bookModal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span
+              aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Legg til avtale</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <input class="form-control" id="AgreementId" [(ngModel)]="AgreementId" width="30" type="hidden"
+                placeholder="Navn (nødvendig)" />
+<div *ngIf="orgId>0">
+                Kontakt: <select class="form-control" (change)="filterList($event.target.value)" id="propertyFilter"
+                [(ngModel)]="this.userid">
+                <option value="0">Alle</option>
+                <option *ngFor="let person of userList" value="{{ person.id }}">
+                  {{ person.name }}
+                </option>
+              </select>    
+            </div>            
+                Avtale:<select class="form-control" (change)="filterList($event.target.value)" id="propertyFilter"
+                [(ngModel)]="AgreementTypeId">
+                <option value="0">Alle</option>
+                <option *ngFor="let agTy of agreementTypes" value="{{ agTy.AgreementTypeId }}">
+                  {{ agTy.Name }}
+                </option>
+              </select>
+              Fra dato:<input id="FromDate" autocomplete="off" [(ngModel)]="FromDate" class="form-control"
+                placeholder="Select date" ng2-datetime-picker date-only="true" [close-on-select]="true" [min-hour]="7"
+                [max-hour]="23" [minute-step]="15" date-format="DD.MM.YYYY" />
+
+                Til dato:<input id="ToDate" autocomplete="off" [(ngModel)]="ToDate" class="form-control" placeholder="Select date"
+                ng2-datetime-picker date-only="true" [close-on-select]="true" [min-hour]="7" [max-hour]="23"
+                [minute-step]="15" date-format="DD.MM.YYYY" />
+
+                Artikkel:<input class="form-control" id="Article" [(ngModel)]="Article" width="30" type="text"
+                placeholder="Article" />
+                Tekst:<input class="form-control" id="Text" [(ngModel)]="Text" width="30" type="text"
+                placeholder="Text" />
+                Pris:<input class="form-control" id="Price" [(ngModel)]="Price" width="30" type="text"
+                placeholder="Price" />
+                Antall mnd:<input class="form-control" id="NumberOfMonths" [(ngModel)]="NumberOfMonths" width="30" type="text"
+                placeholder="Number Of Months" />
+
+                Invoiced to dato:<input id="InvoicedToDate" autocomplete="off" [(ngModel)]="InvoicedToDate" class="form-control" placeholder="Select date"
+                ng2-datetime-picker date-only="true" [close-on-select]="true" [min-hour]="7" [max-hour]="23"
+                [minute-step]="15" date-format="DD.MM.YYYY" />                
+
+            </div>
+            <div class="col-md-2 btnsave">
+              <button class="btn  btn-primary" (click)="save()" type="button">Lagre</button>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /.modal-content -->
+    </div>
+  </div>
+</body>
+
+</html>

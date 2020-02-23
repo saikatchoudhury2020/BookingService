@@ -1,0 +1,9 @@
+.bookingTabContent {
+  height: 570px;
+  overflow-y: AUTO;
+  overflow-x: HIDDEN;
+}
+
+.order-lg {
+  width: 1400px !important;
+}
